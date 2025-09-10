@@ -1,0 +1,93 @@
+/* General Page Styles */
+.contact-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: "Roboto", Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .contact-page h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .contact-description {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  /* Contact Details */
+  .contact-details {
+    margin-bottom: 40px;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .contact-item i {
+    font-size: 24px;
+    color: #4682B4;
+    margin-right: 15px;
+  }
+  
+  .contact-item a {
+    color: #4682B4;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .contact-item a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Social Links */
+  .social-links {
+    margin-top: 20px;
+  }
+  
+  .social-links h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .icons a {
+    font-size: 24px;
+    color: #333;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .icons a:hover {
+    color: #4682B4;
+    transform: scale(1.2);
+  }
+  
+  /* Map Section */
+  .map-container {
+    margin-top: 40px;
+  }
+  
+  .map-container h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .map-container iframe {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
