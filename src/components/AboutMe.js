@@ -43,6 +43,9 @@ return (
     <div className="section aboutme-section">
       <h2 className="section-title aboutme-section-title">Experience</h2>
       <p className="aboutme-text">
+        <strong><a className="lisn-link" href="https://www.centralesupelec.fr/">CentraleSupélec</a>, Independent Software Engineer</strong> (Sept 2025 (contracted in Nov 2025) – pres.) – Leveraging adaptive machine translation to assist collaborative authoring and maintenance of large multilingual computational scientific narratives (continued to work on the project from LISN).
+      </p>
+      <p className="aboutme-text">
         <strong><a className="lisn-link" href="https://www.lisn.upsaclay.fr/">LISN</a>, Research Intern</strong> (May 2025 – July 2025) – Leveraging adaptive machine translation to assist collaborative authoring and maintenance of large multilingual computational scientific narratives.
       </p>
       <p className="aboutme-text">
@@ -149,6 +152,14 @@ return (
           </div>
         </div>
       </div>
+    </div>
+
+
+    <div className="section aboutme-section">
+      <h2 className="section-title aboutme-section-title">Conference Contributions</h2>
+      <p className="aboutme-text">
+        Korotenko, Y. (2025). Leveraging Large Language Models for Maintaining Scientific Multilingual Documents. <a href="https://dobbikov.github.io/sci-trans-git/jdse-poster-yehor-korotenko.pdf">Poster</a> presentation (<a href="https://openreview.net/pdf?id=LZbZpRdqRe">extended abstract</a>). Junior Conference on Data Science and Engineering (JDSE) - Gif-sur-Yvette, France.
+      </p>
     </div>
 
     <div className="section aboutme-section">
