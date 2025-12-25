@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="ukraine.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Lecture Notes | Yehor Korotenko</title>
+  </head>
+  <body>
+    <div class="lect_notes_main_cont">
+      <div class="header_main_cont">
+        <div class="header_main_cont_inner">
+          <div class="main_cont_routs">
+            <a href="index.html" class="main_header_a">DOBBIKOV</a>
+            <a href="about_me.html" class="main_header_a">ABOUT ME</a>
+            <a href="lecture_notes.html" class="main_header_a main_cont_routs_active">LECTURE NOTES</a>
+            <a href="contact_me.html" class="main_header_a" id="main_go_to_main">CONTACT ME</a>
+          </div>
+        </div>
+      </div>
+      <div class="lect_notes_main_cont_inner">
+        <h1 class="lect_notes_page-title">Lecture Notes</h1>
+        <h2 class="lect_notes_page-sub_title">by Yehor Korotenko</h2>
+
+        <div class="lecture-notes-status" data-lecture-notes="status"></div>
+
+        <div class="lect_notes_content-container">
+          <div class="table-of-contents">
+            <h3>Table of Contents</h3>
+            <ul data-lecture-notes="toc"></ul>
+          </div>
+
+          <div class="lect_notes_sections" data-lecture-notes="sections"></div>
+        </div>
+      </div>
+    </div>
+    <script src="lecture-notes.js"></script>
+  </body>
+</html>
