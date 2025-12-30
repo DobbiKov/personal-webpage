@@ -45,7 +45,7 @@
 
     const title = document.createElement("h3");
     title.className = "subsection-title";
-    title.textContent = subsection.subsection || "";
+    title.textContent = subsection.title || "";
 
     const grid = document.createElement("div");
     grid.className = "notes-grid";
@@ -64,7 +64,7 @@
 
     const title = document.createElement("h2");
     title.className = "section-title";
-    title.textContent = section.sections || "";
+    title.textContent = section.title || "";
 
     container.append(title);
 
@@ -93,7 +93,7 @@
       sectionsContainer.append(sectionEl);
       sectionEls[index] = sectionEl;
 
-      const tocItem = createTocEntry(section.sections || `Section ${index + 1}`, () => {
+      const tocItem = createTocEntry(section.title || `Section ${index + 1}`, () => {
         sectionEl.scrollIntoView({ behavior: "smooth" });
       });
       tocList.append(tocItem);
@@ -108,7 +108,7 @@
         throw new Error("Failed to fetch lecture notes");
       }
       const json = await response.json();
-      render(Array.isArray(json) ? json : []);
+      render(Array.isArray(json.sections) ? json.sections : []);
       setStatus("", false);
     } catch (error) {
       setStatus("Unable to load lecture notes right now.", true);
