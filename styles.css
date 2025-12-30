@@ -128,6 +128,24 @@ code {
   color: #4682b4;
 }
 
+.main_cont_about_inner .cv_icon_text {
+  font-family: "Roboto", sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s all;
+}
+
+.main_cont_about_inner .cv_icon_text:hover {
+  transform: scale(1.2);
+  color: #4682b4;
+}
+
 .main_cont_about_inner a i::before {
   margin: 0;
   padding: 0;
