@@ -552,132 +552,211 @@ code {
   display: block;
 }
 
-.table-of-contents {
-  margin-bottom: 2rem;
-  padding: 1rem;
-  background: linear-gradient(135deg, var(--color-bg), var(--color-surface));
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  box-shadow: var(--shadow-sm);
+.lect_notes_content-container {
+  display: block;
 }
 
-.table-of-contents h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.75rem;
+.table-of-contents {
+  margin: 1rem 0;
+  padding: 0.35rem;
+  background-color: var(--color-surface-muted);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 22%, var(--color-border));
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 1rem;
+  z-index: 12;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.table-of-contents .toc-menu-toggle {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
   color: var(--color-text);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  width: 44px;
+  min-height: 44px;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.table-of-contents .toc-menu-toggle:hover,
+.table-of-contents .toc-menu-toggle:focus-visible {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.table-of-contents .toc-current-subject {
+  margin: 0;
+  text-align: center;
+  font-size: 0.95rem;
   font-weight: 700;
+  color: var(--color-text);
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toc-shell-spacer {
+  width: 44px;
+  min-height: 44px;
 }
 
 .table-of-contents ul {
   list-style: none;
-  padding: 0;
+  margin: 0;
+  padding: 5px;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  gap: 0.2rem;
+  background-color: var(--color-surface-muted);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  max-height: min(65vh, 420px);
+  overflow-y: auto;
+}
+
+.table-of-contents[data-menu-open="true"] ul {
+  display: flex;
+}
+
+.table-of-contents li {
   margin: 0;
 }
 
-.table-of-contents li {
-  margin-bottom: 0.4rem;
-}
-
-.table-of-contents button {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-accent);
-  background: none;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
-  padding: 0.5rem 0.65rem;
-  border-radius: 8px;
-  min-height: 44px;
+.table-of-contents ul button {
   width: 100%;
-}
-
-.table-of-contents button:hover,
-.table-of-contents button:focus-visible {
-  color: var(--color-accent-contrast);
-  background-color: var(--color-accent);
-  transform: translateX(2px);
-  box-shadow: var(--shadow-sm);
-}
-
-.table-of-contents li:last-child button {
-  margin-bottom: 0;
-}
-
-.lect_notes_content-container {
-  display: grid;
-  grid-template-columns: minmax(220px, 270px) minmax(0, 1fr);
-  gap: 1rem;
-  align-items: start;
-}
-
-.table-of-contents {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  position: sticky;
-  top: 1rem;
-  border-radius: 16px;
-  border-color: color-mix(in srgb, var(--color-accent) 22%, var(--color-border));
-  background: linear-gradient(
-    165deg,
-    color-mix(in srgb, var(--color-accent) 10%, var(--color-surface)) 0%,
-    var(--color-surface) 68%
-  );
-}
-
-.table-of-contents ul {
-  counter-reset: toc-index;
-}
-
-.table-of-contents li {
-  counter-increment: toc-index;
-}
-
-.table-of-contents button {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
+  min-height: 44px;
   border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text);
   border-radius: 10px;
+  text-align: center;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.table-of-contents button::before {
-  content: counter(toc-index, decimal-leading-zero);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--color-text-subtle);
-  border: 1px solid color-mix(in srgb, var(--color-accent) 28%, var(--color-border));
-  border-radius: 999px;
-  min-width: 2.4rem;
-  min-height: 1.8rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: color-mix(in srgb, var(--color-surface) 85%, var(--color-accent) 15%);
-  flex-shrink: 0;
+.table-of-contents ul button:hover,
+.table-of-contents ul button:focus-visible {
+  color: var(--color-accent);
+  background-color: color-mix(in srgb, var(--color-surface) 74%, var(--color-accent) 26%);
+  border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
 }
 
-.table-of-contents button.is-active {
+.table-of-contents ul button.is-active {
   color: var(--color-accent-contrast);
   background-color: var(--color-accent);
   border-color: color-mix(in srgb, var(--color-accent) 75%, var(--color-border));
-  box-shadow: var(--shadow-sm);
 }
 
-.table-of-contents button.is-active::before {
-  color: var(--color-accent-contrast);
-  border-color: color-mix(in srgb, var(--color-accent-contrast) 55%, transparent);
-  background-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-surface));
+@media (min-width: 981px) {
+  .table-of-contents {
+    position: static;
+    top: auto;
+    z-index: auto;
+    display: block;
+    padding: 5px;
+  }
+
+  .table-of-contents .toc-menu-toggle,
+  .table-of-contents .toc-current-subject,
+  .table-of-contents .toc-shell-spacer {
+    display: none;
+  }
+
+  .table-of-contents ul {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    margin: 0;
+    padding: 5px;
+    display: flex;
+    border: none;
+    box-shadow: none;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .table-of-contents ul button {
+    text-align: left;
+  }
+
+  .table-of-contents.is-compact {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(650px, calc(100% - 2rem));
+    margin: 0;
+    z-index: 24;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    gap: 0.25rem;
+    align-items: center;
+    padding: 0.35rem;
+  }
+
+  .table-of-contents.is-compact .toc-menu-toggle {
+    display: inline-flex;
+  }
+
+  .table-of-contents.is-compact .toc-current-subject {
+    display: block;
+  }
+
+  .table-of-contents.is-compact .toc-shell-spacer {
+    display: block;
+  }
+
+  .table-of-contents.is-compact ul {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    display: none;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    max-height: min(60vh, 420px);
+    overflow-y: auto;
+  }
+
+  .table-of-contents.is-compact[data-menu-open="true"] ul {
+    display: flex;
+  }
+
+  .table-of-contents.is-compact ul button {
+    text-align: center;
+  }
+}
+
+.toc-compact-placeholder {
+  width: 100%;
 }
 
 .lect_notes_sections {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 0.9rem;
 }
 
 .lect_notes_sections .section {
@@ -790,30 +869,20 @@ code {
   background-color: color-mix(in srgb, var(--color-surface) 88%, var(--color-error) 12%);
 }
 
-@media (min-width: 981px) {
-  .lect_notes_content-container .table-of-contents {
-    top: 1rem;
-    transform: none;
-    position: sticky;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  .lect_notes_content-container.toc-center-sticky .table-of-contents {
-    top: 50vh;
-    transform: translateY(-50%);
-  }
-}
-
 @media (max-width: 980px) {
-  .lect_notes_content-container {
-    grid-template-columns: 1fr;
+  .table-of-contents {
+    position: sticky;
+    top: 1rem;
+    z-index: 16;
   }
 
-  .table-of-contents {
-    position: static;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  .table-of-contents ul {
+    max-height: min(65vh, 420px);
+    overflow-y: auto;
+  }
+
+  .table-of-contents .toc-current-subject {
+    font-size: 0.88rem;
   }
 }
 
