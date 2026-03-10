@@ -2,6 +2,7 @@
   const tocList = document.querySelector('[data-lecture-notes="toc"]');
   const sectionsContainer = document.querySelector('[data-lecture-notes="sections"]');
   const statusEl = document.querySelector('[data-lecture-notes="status"]');
+  const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   if (!tocList || !sectionsContainer) {
     return;
@@ -28,10 +29,17 @@
 
     const link = document.createElement("a");
     link.className = "note-link";
-    link.href = note.url || "#";
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = "Open Notes";
+    if (note.url) {
+      link.href = note.url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Open Notes";
+    } else {
+      link.href = "#";
+      link.textContent = "Link unavailable";
+      link.setAttribute("aria-disabled", "true");
+      link.tabIndex = -1;
+    }
 
     content.append(title, link);
     card.append(content);
@@ -87,17 +95,22 @@
 
   const render = (data) => {
     const sectionEls = [];
+    const tocFragment = document.createDocumentFragment();
+    const sectionsFragment = document.createDocumentFragment();
 
     data.forEach((section, index) => {
       const sectionEl = createSection(section);
-      sectionsContainer.append(sectionEl);
+      sectionsFragment.append(sectionEl);
       sectionEls[index] = sectionEl;
 
       const tocItem = createTocEntry(section.title || `Section ${index + 1}`, () => {
-        sectionEl.scrollIntoView({ behavior: "smooth" });
+        sectionEl.scrollIntoView({ behavior: reduceMotionQuery.matches ? "auto" : "smooth" });
       });
-      tocList.append(tocItem);
+      tocFragment.append(tocItem);
     });
+
+    tocList.append(tocFragment);
+    sectionsContainer.append(sectionsFragment);
   };
 
   const fetchData = async () => {
