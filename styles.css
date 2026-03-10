@@ -483,17 +483,18 @@ code {
 
 .note-card {
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-soft);
   border-radius: 10px;
-  padding: 1rem;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 1.25rem;
+  box-shadow: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .note-card:hover,
 .note-card:focus-within {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--color-accent) 50%, var(--color-border));
+  box-shadow: var(--shadow-sm);
 }
 
 .note-content h4 {
@@ -504,20 +505,20 @@ code {
 
 .note-link {
   font-size: 0.95rem;
-  color: var(--color-accent);
+  color: var(--color-text);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 500;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
   border-radius: 8px;
-  padding: 0.35rem 0.45rem;
+  padding: 0.35rem 0;
+  transition: color 0.2s ease;
 }
 
 .note-link:hover,
 .note-link:focus-visible {
-  text-decoration: underline;
-  color: var(--color-accent-strong);
+  color: var(--color-accent);
 }
 
 .note-link[aria-disabled="true"] {
@@ -559,8 +560,8 @@ code {
 .table-of-contents {
   margin: 1rem 0;
   padding: 0.35rem;
-  background-color: var(--color-surface-muted);
-  border: 1px solid color-mix(in srgb, var(--color-accent) 22%, var(--color-border));
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
   border-radius: 14px;
   box-shadow: var(--shadow-sm);
   position: sticky;
@@ -622,8 +623,8 @@ code {
   display: none;
   flex-direction: column;
   gap: 0.2rem;
-  background-color: var(--color-surface-muted);
-  border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
   border-radius: 12px;
   box-shadow: var(--shadow-md);
   max-height: min(65vh, 420px);
@@ -656,14 +657,14 @@ code {
 .table-of-contents ul button:hover,
 .table-of-contents ul button:focus-visible {
   color: var(--color-accent);
-  background-color: color-mix(in srgb, var(--color-surface) 74%, var(--color-accent) 26%);
-  border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
+  background-color: var(--color-surface-muted);
+  border-color: transparent;
 }
 
 .table-of-contents ul button.is-active {
-  color: var(--color-accent-contrast);
-  background-color: var(--color-accent);
-  border-color: color-mix(in srgb, var(--color-accent) 75%, var(--color-border));
+  color: var(--color-accent);
+  background-color: color-mix(in srgb, var(--color-surface) 85%, var(--color-accent) 15%);
+  border-color: transparent;
 }
 
 @media (min-width: 981px) {
@@ -732,7 +733,8 @@ code {
     left: 0;
     right: 0;
     display: none;
-    border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border-soft);
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     max-height: min(60vh, 420px);
@@ -755,33 +757,35 @@ code {
 .lect_notes_sections {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 0.9rem;
+  gap: 3.5rem;
+  margin-top: 1.5rem;
 }
 
 .lect_notes_sections .section {
   margin-bottom: 0;
-  padding: 1.1rem 1.2rem;
-  border: 1px solid color-mix(in srgb, var(--color-accent) 16%, var(--color-border));
-  border-radius: 16px;
-  background: linear-gradient(160deg, var(--color-surface) 0%, color-mix(in srgb, var(--color-surface) 86%, var(--color-accent) 14%) 100%);
-  box-shadow: var(--shadow-sm);
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
 }
 
 .section-kicker {
-  margin-bottom: 0.35rem;
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
+  margin-bottom: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-text-subtle);
+  opacity: 0.8;
 }
 
 .lect_notes_sections .section-title {
-  margin-bottom: 0.85rem;
-  border-bottom: none;
-  padding-bottom: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border-soft);
+  padding-bottom: 0.75rem;
   color: var(--color-text);
+  font-weight: 500;
+  font-size: 1.6rem;
 }
 
 .lect_notes_sections .subsection {
@@ -803,14 +807,15 @@ code {
 .subsection-count {
   flex-shrink: 0;
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--color-text-subtle);
-  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
-  background-color: color-mix(in srgb, var(--color-surface) 80%, var(--color-accent) 20%);
+  border: 1px solid var(--color-border-soft);
+  background-color: transparent;
   border-radius: 999px;
-  padding: 0.25rem 0.55rem;
+  padding: 0.2rem 0.5rem;
+  opacity: 0.8;
 }
 
 .lect_notes_sections .notes-grid {
@@ -819,8 +824,8 @@ code {
 
 .lect_notes_sections .note-card {
   border-radius: 12px;
-  border-color: color-mix(in srgb, var(--color-accent) 14%, var(--color-border));
-  min-height: 170px;
+  border-color: var(--color-border-soft);
+  min-height: 150px;
 }
 
 .lect_notes_sections .note-content {
@@ -839,14 +844,24 @@ code {
 
 .lect_notes_sections .note-link {
   margin-top: auto;
-  background-color: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface));
-  border: 1px solid color-mix(in srgb, var(--color-accent) 32%, var(--color-border));
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  min-height: auto;
+  font-weight: 500;
+  color: var(--color-accent);
 }
 
 .lect_notes_sections .note-link::after {
-  content: "↗";
-  margin-left: 0.4rem;
-  font-size: 0.85rem;
+  content: "→";
+  margin-left: 0.35rem;
+  font-size: 0.95rem;
+  transition: transform 0.2s ease;
+}
+
+.lect_notes_sections .note-card:hover .note-link::after,
+.lect_notes_sections .note-link:focus-visible::after {
+  transform: translateX(3px);
 }
 
 .lect_notes_sections .note-link[aria-disabled="true"] {
