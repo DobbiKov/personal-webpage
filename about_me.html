@@ -4,7 +4,22 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="ukraine.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#2a5d8f" />
+    <script>
+      (() => {
+        const key = "dobbikov-theme";
+        try {
+          const savedTheme = localStorage.getItem(key);
+          if (savedTheme === "dark" || savedTheme === "light") {
+            document.documentElement.setAttribute("data-theme", savedTheme);
+          }
+        } catch (error) {
+          // Ignore storage access issues.
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
@@ -19,34 +34,60 @@
   </head>
   <body>
     <div class="lect_notes_main_cont">
-      <div class="header_main_cont">
+      <header class="header_main_cont">
         <div class="header_main_cont_inner">
-          <div class="main_cont_routs">
-            <a href="index.html" class="main_header_a">DOBBIKOV</a>
-            <a href="about_me.html" class="main_header_a main_cont_routs_active">ABOUT ME</a>
-            <a href="lecture_notes.html" class="main_header_a">LECTURE NOTES</a>
-            <a href="contact_me.html" class="main_header_a" id="main_go_to_main">CONTACT ME</a>
-          </div>
+          <nav class="main_cont_routs" aria-label="Primary">
+            <button
+              class="nav-toggle"
+              type="button"
+              data-nav-toggle
+              aria-expanded="false"
+              aria-controls="primary-nav-menu"
+              aria-label="Open navigation menu"
+            >
+              <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+            <a href="index.html" class="main_header_a main_brand">DOBBIKOV</a>
+            <button
+              class="theme-toggle"
+              type="button"
+              data-theme-toggle
+              aria-label="Switch to dark theme"
+              aria-pressed="false"
+            >
+              <i class="fas fa-moon" aria-hidden="true" data-theme-icon></i>
+              <span class="sr-only" data-theme-toggle-label>Switch to dark theme</span>
+            </button>
+            <div class="main_nav_links" id="primary-nav-menu" data-nav-menu>
+              <a href="about_me.html" class="main_header_a main_cont_routs_active" aria-current="page"
+                >ABOUT ME</a
+              >
+              <a href="lecture_notes.html" class="main_header_a">LECTURE NOTES</a>
+              <a href="contact_me.html" class="main_header_a">CONTACT ME</a>
+            </div>
+          </nav>
         </div>
-      </div>
-      <div class="lect_notes_main_cont_inner">
-        <div class="section aboutme-section first-text-about-me">
-          <h2 class="name_about_me">Yehor KOROTENKO (dobbikov)</h2>
-          <h2 class="section-title aboutme-section-title">Summary</h2>
-          <div class="aboutme-text">
-            <p>
-              High qualified Software Engineer with over <strong>five years</strong> of
-              experience across research, freelance, and industry settings. Adept at
-              developing full-stack applications, building automation tools, and
-              contributing to open-source projects.
-            </p>
-            <p>
-              Currently focused on <em>machine translation</em> and
-              <em>scientific tooling</em>. Known for rapid learning, deep curiosity,
-              and a strong commitment to building meaningful, high-impact software.
-            </p>
+      </header>
+      <main class="lect_notes_main_cont_inner aboutme-page">
+        <h1 class="lect_notes_page-title">About Me</h1>
+        <h2 class="lect_notes_page-sub_title">Yehor Korotenko</h2>
+        <div class="aboutme-sections">
+          <div class="section aboutme-section first-text-about-me">
+            <h2 class="section-title aboutme-section-title">Summary</h2>
+            <div class="aboutme-text">
+              <p>
+                High qualified Software Engineer with over <strong>six years</strong> of
+                experience across research, freelance, and industry settings. Adept at
+                developing full-stack applications, building automation tools, and
+                contributing to open-source projects.
+              </p>
+              <p>
+                Currently focused on <em>machine translation</em> and
+                <em>scientific tooling</em>. Known for rapid learning, deep curiosity,
+                and a strong commitment to building meaningful, high-impact software.
+              </p>
+            </div>
           </div>
-        </div>
 
         <div class="section aboutme-section">
           <h2 class="section-title aboutme-section-title">Education</h2>
@@ -223,13 +264,21 @@
             <p><strong>DJing Enthusiast:</strong> Enjoys creating music and performing as a DJ during free time.</p>
             <div class="dj_div">
               <div class="dj_inner">
-                <img src="assets/dj.jpg" alt="DJing" class="dj_photo" />
+                <img
+                  src="assets/dj.jpg"
+                  alt="Yehor Korotenko performing a drum and bass set in Dnipro, Ukraine"
+                  class="dj_photo"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <p class="dj_div-caption">Performing my Drum and Bass set in Dnipro, Ukraine (June 2023)</p>
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      </main>
     </div>
+    <script src="theme.js"></script>
   </body>
 </html>
