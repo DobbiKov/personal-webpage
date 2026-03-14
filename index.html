@@ -33,9 +33,48 @@
     <title>Yehor Korotenko</title>
   </head>
   <body>
-    <main class="main_cont">
-      <section class="main_cont_inner">
-        <section class="main_cont_about">
+    <header class="site-header">
+      <div class="site-header-inner">
+        <nav class="main_cont_routs" aria-label="Primary">
+          <button
+            class="nav-toggle"
+            type="button"
+            data-nav-toggle
+            aria-expanded="false"
+            aria-controls="primary-nav-menu"
+            aria-label="Open navigation menu"
+          >
+            <i class="fas fa-bars" aria-hidden="true"></i>
+          </button>
+          <a
+            href="index.html"
+            class="main_header_a main_brand main_cont_routs_active"
+            aria-current="page"
+          >
+            DOBBIKOV
+          </a>
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Switch to dark theme"
+            aria-pressed="false"
+          >
+            <i class="fas fa-moon" aria-hidden="true" data-theme-icon></i>
+            <span class="sr-only" data-theme-toggle-label>Switch to dark theme</span>
+          </button>
+          <div class="main_nav_links" id="primary-nav-menu" data-nav-menu>
+            <a href="#about" class="main_header_a">ABOUT ME</a>
+            <a href="lecture_notes.html" class="main_header_a">LECTURE NOTES</a>
+            <a href="#contact" class="main_header_a">CONTACT ME</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section id="home" class="hero-section">
+      <div class="hero-inner">
+        <div class="main_cont_about">
           <img
             src="assets/myphoto2.png"
             alt="Portrait of Yehor Korotenko"
@@ -80,44 +119,298 @@
               </a>
             </div>
           </div>
-        </section>
+        </div>
+      </div>
+    </section>
 
-        <nav class="main_cont_routs" aria-label="Primary">
-          <button
-            class="nav-toggle"
-            type="button"
-            data-nav-toggle
-            aria-expanded="false"
-            aria-controls="primary-nav-menu"
-            aria-label="Open navigation menu"
-          >
-            <i class="fas fa-bars" aria-hidden="true"></i>
-          </button>
-          <a
-            href="index.html"
-            class="main_header_a main_brand main_cont_routs_active"
-            aria-current="page"
-          >
-            DOBBIKOV
-          </a>
-          <button
-            class="theme-toggle"
-            type="button"
-            data-theme-toggle
-            aria-label="Switch to dark theme"
-            aria-pressed="false"
-          >
-            <i class="fas fa-moon" aria-hidden="true" data-theme-icon></i>
-            <span class="sr-only" data-theme-toggle-label>Switch to dark theme</span>
-          </button>
-          <div class="main_nav_links" id="primary-nav-menu" data-nav-menu>
-            <a href="about_me.html" class="main_header_a">ABOUT ME</a>
-            <a href="lecture_notes.html" class="main_header_a">LECTURE NOTES</a>
-            <a href="contact_me.html" class="main_header_a">CONTACT ME</a>
+    <section id="about" class="index-page-section">
+      <div class="lect_notes_main_cont_inner aboutme-page">
+        <h1 class="lect_notes_page-title">About Me</h1>
+        <h2 class="lect_notes_page-sub_title">Yehor Korotenko</h2>
+        <div class="aboutme-sections">
+          <div class="section aboutme-section first-text-about-me">
+            <h2 class="section-title aboutme-section-title">Summary</h2>
+            <div class="aboutme-text">
+              <p>
+                High qualified Software Engineer with over <strong>six years</strong> of
+                experience across research, freelance, and industry settings. Adept at
+                developing full-stack applications, building automation tools, and
+                contributing to open-source projects.
+              </p>
+              <p>
+                Currently focused on <em>machine translation</em> and
+                <em>scientific tooling</em>. Known for rapid learning, deep curiosity,
+                and a strong commitment to building meaningful, high-impact software.
+              </p>
+            </div>
           </div>
-        </nav>
-      </section>
-    </main>
+
+          <div class="section aboutme-section">
+            <h2 class="section-title aboutme-section-title">Education</h2>
+            <p class="aboutme-text">
+              <strong>Universite Paris-Saclay</strong> - Dual Degree in Mathematics and
+              Computer Science (Sept 2023 - May 2026)
+            </p>
+            <p class="aboutme-text">
+              <strong>GPA</strong>: 18.04/20 (Top 3 of 57 students) | Honors: FMJH Scholarship
+            </p>
+            <p class="aboutme-text">
+              <strong>Relevant Coursework</strong>: Calculus, Analysis, Linear Algebra,
+              Abstract Algebra &amp; Group Theory, Probability &amp; Statistics, Algorithmics
+              &amp; Data Structures, Functional Programming, Topology, Graphical Programming
+            </p>
+          </div>
+
+          <div class="section aboutme-section">
+            <h2 class="section-title aboutme-section-title">Technical Skills</h2>
+            <p class="aboutme-text"><strong>Programming Languages:</strong> Python, Rust, OCaml, C++, C#, JavaScript</p>
+            <p class="aboutme-text"><strong>Web Development:</strong> ASP.NET Core, Angular, React, MySQL</p>
+            <p class="aboutme-text"><strong>Data Science:</strong> Pandas, Matplotlib, NumPy, scikit-learn</p>
+            <p class="aboutme-text"><strong>Other Tools:</strong> Requests, Selenium, SQL</p>
+            <p class="aboutme-text"><strong>Version Control:</strong> Git, GitHub, GitLab</p>
+          </div>
+
+          <div class="section aboutme-section">
+            <h2 class="section-title aboutme-section-title">Experience</h2>
+            <p class="aboutme-text">
+              <strong><a class="lisn-link" href="https://www.centralesupelec.fr/">CentraleSupelec</a>, Independent Software Engineer</strong>
+              (Sept 2025 (contracted in Nov 2025) - pres.) - Leveraging adaptive machine
+              translation to assist collaborative authoring and maintenance of large
+              multilingual computational scientific narratives (continued to work on
+              the project from LISN).
+            </p>
+            <p class="aboutme-text">
+              <strong><a class="lisn-link" href="https://www.lisn.upsaclay.fr/">LISN</a>, Research Intern</strong>
+              (May 2025 - July 2025) - Leveraging adaptive machine translation to assist
+              collaborative authoring and maintenance of large multilingual computational
+              scientific narratives.
+            </p>
+            <p class="aboutme-text">
+              <strong>DevDJsUa, Software Engineer</strong> (June 2021 - December 2021) - Built
+              scalable full-stack applications and interactive tools for clients, specializing
+              in custom solutions including CRM systems and user-facing bots.
+            </p>
+            <p class="aboutme-text">
+              <strong>Freelance, Software Engineer</strong> (January 2021 - February 2022) -
+              Developed full-stack web applications using JavaScript, C#, React, and Angular.
+              Designed and implemented multiple Telegram bots for automation and user interaction.
+            </p>
+          </div>
+
+          <div class="section aboutme-section">
+            <h2 class="section-title aboutme-section-title">Projects</h2>
+            <div class="projects-container">
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>Sci-trans-git</strong> - a research based toolchain to maintain
+                  multilingual documents with style and syntax preservance.
+                </div>
+                <a class="project-link" href="https://github.com/DobbiKov/sci-trans-git" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>LogGit</strong> - a lightweight, easy-to-use logging library for Rust.
+                </div>
+                <a class="project-link" href="https://github.com/DobbiKov/loggit" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>Parse Dir Contents</strong> - a CLI application for directory contents extraction
+                  to simplify the working process with LLMs.
+                </div>
+                <a class="project-link" href="https://github.com/DobbiKov/parse_directory_contents" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>Open DiGraph Lib</strong> - a library for managing graphs and boolean circuits.
+                </div>
+                <a class="project-link" href="https://github.com/DobbiKov/open_digraph_lib" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>Oxford Dict. Lib/Bot</strong> - a library and a telegram bot for simplifying English learning process.
+                </div>
+                <a class="project-link" href="https://github.com/DobbiKov/oxford-dictionary-lib" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>Full-Stack CRM for Scout Organization:</strong> Built a functional CRM using C#, ASP.NET Core, Entity Framework, MySQL, and Angular.
+                </div>
+                <a class="project-link" href="https://github.com/DobbiKov/sdSite" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>Telegram Bot for Track Sorting:</strong> Designed a bot to categorize tracks by tonality using Python.
+                </div>
+                <a class="project-link" href="https://github.com/DevDJsUA/key-sort-app" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>GTA Online GameMode:</strong> Developed a 30,000+ line game mode in Pawn, incorporating CRM functionalities, SQL, and algorithms.
+                </div>
+                <a class="project-link" href="https://github.com/DobbiKov/crmpmode" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>University Timetable Bot:</strong> Created a bot to parse PDF files and assist users with scheduling using Python.
+                </div>
+                <a class="project-link" href="https://github.com/DobbiKov/paris-saclay-bot" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>Neural Networks in Rust:</strong> Built neural networks from scratch to explore machine learning concepts.
+                </div>
+                <a class="project-link" href="https://github.com/DobbiKov/neural-network-rust" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>Image Recognition Project:</strong> Conducted image recognition experiments using Python, Pandas, Matplotlib, NumPy, and scikit-learn.
+                </div>
+              </div>
+              <div class="project-item">
+                <div class="project-info">
+                  <strong>Web Scraping Scripts:</strong> Automated data collection processes with Python, Selenium, and Requests.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section aboutme-section">
+            <h2 class="section-title aboutme-section-title">Conference Contributions</h2>
+            <p class="aboutme-text">
+              Korotenko, Y. (2025). Leveraging Large Language Models for Maintaining Scientific Multilingual Documents.
+              <a href="https://dobbikov.github.io/sci-trans-git/jdse-poster-yehor-korotenko.pdf">Poster</a>
+              presentation (<a href="https://openreview.net/pdf?id=LZbZpRdqRe">extended abstract</a>).
+              Junior Conference on Data Science and Engineering (JDSE) - Gif-sur-Yvette, France.
+            </p>
+          </div>
+
+          <div class="section aboutme-section">
+            <h2 class="section-title aboutme-section-title">Languages</h2>
+            <p class="aboutme-text"><strong>Fluent:</strong> English, French</p>
+            <p class="aboutme-text"><strong>Native:</strong> Ukrainian, Russian</p>
+          </div>
+
+          <div class="section aboutme-section">
+            <h2 class="section-title aboutme-section-title">Interests &amp; Extracurricular Activities</h2>
+            <p class="aboutme-text">
+              <strong>Scouting Leader:</strong> Active scout since age 12, organizing and participating in international events.
+            </p>
+            <div class="aboutme-text">
+              <p><strong>DJing Enthusiast:</strong> Enjoys creating music and performing as a DJ during free time.</p>
+              <div class="dj_div">
+                <div class="dj_inner">
+                  <img
+                    src="assets/dj.jpg"
+                    alt="Yehor Korotenko performing a drum and bass set in Dnipro, Ukraine"
+                    class="dj_photo"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <p class="dj_div-caption">Performing my Drum and Bass set in Dnipro, Ukraine (June 2023)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="index-page-section">
+      <div class="lect_notes_main_cont_inner contactme-page">
+        <h1 class="lect_notes_page-title">Contact Me</h1>
+        <h2 class="lect_notes_page-sub_title">Yehor Korotenko</h2>
+
+        <div class="contactme-sections">
+          <section class="section contactme-section">
+            <h2 class="section-title contactme-section-title">Direct Channels</h2>
+            <p class="contact-description">
+              Feel free to reach out to me through any of the following channels.
+            </p>
+
+            <div class="contact-details">
+              <div class="contact-item">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                <div class="contact-item-content">
+                  <p class="contact-label">Email</p>
+                  <a href="mailto:yehor.korotenko@outlook.com">yehor.korotenko@outlook.com</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                <div class="contact-item-content">
+                  <p class="contact-label">University Email</p>
+                  <a href="mailto:yehor.korotenko@universite-paris-saclay.fr"
+                    >yehor.korotenko@universite-paris-saclay.fr</a
+                  >
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                <div class="contact-item-content">
+                  <p class="contact-label">Telegram</p>
+                  <a href="https://t.me/dobbikov">dobbikov</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section contactme-section">
+            <h2 class="section-title contactme-section-title">Social Profiles</h2>
+            <div class="icons">
+              <a
+                href="https://github.com/DobbiKov"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub profile"
+              >
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://linkedin.com/in/yehor-korotenko"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profile"
+              >
+                <i class="fab fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="mailto:yehor.korotenko@outlook.com" aria-label="Send an email">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://instagram.com/dobbikov"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram profile"
+              >
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
     <script src="theme.js"></script>
   </body>
 </html>
