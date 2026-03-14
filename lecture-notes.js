@@ -353,7 +353,7 @@
     setStatus('Loading lecture notes...', false);
 
     try {
-      const response = await fetch('https://dobbikov.com/lecture-notes');
+      const response = await fetch('https://korotenky.com/lecture-notes');
       if (!response.ok) {
         throw new Error('Failed to fetch lecture notes');
       }
