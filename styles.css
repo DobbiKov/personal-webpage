@@ -1335,16 +1335,22 @@ button:focus-visible {
   }
 }
 
-/* Sticky site header */
+/* Fixed site header — hidden by default, shown via JS when hero nav scrolls out */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   background-color: var(--color-bg);
-  display: flex;
+  display: none;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
   border-bottom: 1px solid var(--color-border-soft);
+}
+
+.site-header.is-visible {
+  display: flex;
 }
 
 .site-header-inner {
@@ -1355,30 +1361,9 @@ button:focus-visible {
   margin-top: 0;
 }
 
-/* Hero section */
-.hero-section {
-  min-height: calc(100dvh - 70px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 1rem;
-  background-color: var(--color-bg);
-}
-
-.hero-inner {
-  width: min(650px, calc(100% - 2rem));
-}
-
 /* Index page sections (about, contact) */
 .index-page-section {
   display: flex;
   justify-content: center;
   padding: 3rem 0 4rem;
-  border-top: 1px solid var(--color-border-soft);
-}
-
-@media (max-width: 650px) {
-  .hero-section {
-    padding: 1.5rem 0.75rem;
-  }
 }
