@@ -60,6 +60,11 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 75px;
+}
+
 body {
   margin: 0;
   font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -1328,4 +1333,37 @@ button:focus-visible {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Fixed site header — hidden by default, shown via JS when hero nav scrolls out */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: var(--color-bg);
+  display: none;
+  justify-content: center;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.site-header.is-visible {
+  display: flex;
+}
+
+.site-header-inner {
+  width: min(650px, calc(100% - 2rem));
+}
+
+.site-header .main_cont_routs {
+  margin-top: 0;
+}
+
+/* Index page sections (about, contact) */
+.index-page-section {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0 4rem;
 }
