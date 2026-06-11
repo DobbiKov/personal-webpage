@@ -644,7 +644,8 @@ code {
   margin: 0;
 }
 
-.table-of-contents ul button {
+.table-of-contents ul button,
+.table-of-contents ul a {
   width: 100%;
   min-height: 44px;
   border: 1px solid transparent;
@@ -660,13 +661,17 @@ code {
 }
 
 .table-of-contents ul button:hover,
-.table-of-contents ul button:focus-visible {
+.table-of-contents ul button:focus-visible,
+.table-of-contents ul a:hover,
+.table-of-contents ul a:focus-visible 
+{
   color: var(--color-accent);
   background-color: var(--color-surface-muted);
   border-color: transparent;
 }
 
-.table-of-contents ul button.is-active {
+.table-of-contents ul button.is-active,
+.table-of-contents ul a.is-active {
   color: var(--color-accent);
   background-color: color-mix(in srgb, var(--color-surface) 85%, var(--color-accent) 15%);
   border-color: transparent;
@@ -701,7 +706,8 @@ code {
     overflow: visible;
   }
 
-  .table-of-contents ul button {
+  .table-of-contents ul button,
+  .table-of-contents ul a {
     text-align: left;
   }
 
@@ -750,7 +756,8 @@ code {
     display: flex;
   }
 
-  .table-of-contents.is-compact ul button {
+  .table-of-contents.is-compact ul button,
+  .table-of-contents.is-compact ul a {
     text-align: center;
   }
 }
