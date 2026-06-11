@@ -654,9 +654,13 @@ code {
   border-radius: 10px;
   text-align: center;
   padding: 0.5rem 0.7rem;
+  font: inherit;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -709,6 +713,8 @@ code {
   .table-of-contents ul button,
   .table-of-contents ul a {
     text-align: left;
+    text-decoration: none;
+    justify-content: flex-start;
   }
 
   .table-of-contents.is-compact {
