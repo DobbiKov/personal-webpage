@@ -1247,6 +1247,7 @@ code {
 }
 
 .edu-card {
+    position: relative;
     display: flex;
     gap: 1.1rem;
     align-items: flex-start;
@@ -1361,6 +1362,296 @@ code {
     .edu-card-header {
         flex-direction: column;
         gap: 0.3rem;
+    }
+
+    /* Pin the photo button to the top-right corner, opposite the logo,
+       instead of letting it drop below the stacked card content. */
+    .edu-card > .entry-photo {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .edu-card-body {
+        /* Reserve room so the school name never runs under the button. */
+        padding-right: 3.6rem;
+    }
+}
+
+/* ── Entry photos (education & experience reveal-on-hover) ── */
+.entry-photo {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+    vertical-align: top;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Absolutely-anchored variant for experience paragraphs */
+.aboutme-text:has(> .entry-photo) {
+    position: relative;
+    padding-right: 3.9rem;
+}
+
+.aboutme-text > .entry-photo {
+    position: absolute;
+    top: 0.1rem;
+    right: 0;
+}
+
+.entry-photo-thumb {
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--color-border-soft);
+    background-color: var(--color-surface-muted);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.entry-photo-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.entry-photo:hover .entry-photo-thumb,
+.entry-photo:focus-visible .entry-photo-thumb,
+.entry-photo:focus-within .entry-photo-thumb,
+.entry-photo.is-open .entry-photo-thumb {
+    transform: translateY(-1px);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+}
+
+/* Placeholder state — shown until a real photo file exists */
+.entry-photo.is-placeholder .entry-photo-thumb img {
+    display: none;
+}
+
+.entry-photo.is-placeholder .entry-photo-thumb::after {
+    content: "\f030"; /* fa-camera */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--color-text-subtle);
+    font-size: 0.95rem;
+}
+
+/* Enlarged popover preview */
+.entry-photo-pop {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    right: 0;
+    width: 15rem;
+    max-width: min(15rem, 72vw);
+    padding: 0.5rem;
+    border-radius: 14px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px) scale(0.98);
+    transform-origin: bottom right;
+    transition:
+        opacity 0.18s ease,
+        transform 0.18s ease,
+        visibility 0.18s ease;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.entry-photo:hover .entry-photo-pop,
+.entry-photo:focus-within .entry-photo-pop,
+.entry-photo.is-open .entry-photo-pop {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.entry-photo-pop-frame {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--color-surface-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.entry-photo-pop-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.entry-photo.is-placeholder .entry-photo-pop-frame::after {
+    content: "\f030"; /* fa-camera */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--color-text-subtle);
+    font-size: 1.5rem;
+}
+
+.entry-photo-caption {
+    display: block;
+    margin-top: 0.4rem;
+    padding: 0 0.15rem 0.1rem;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.entry-photo.is-placeholder .entry-photo-caption::after {
+    content: " · photo coming soon";
+    color: var(--color-text-subtle);
+}
+
+/* Reduced motion: no transform/opacity easing */
+@media (prefers-reduced-motion: reduce) {
+    .entry-photo-thumb,
+    .entry-photo-pop {
+        transition: none;
+    }
+}
+
+/* Narrow but hover-capable screens: keep the popover on-screen */
+@media (hover: hover) and (max-width: 560px) {
+    .entry-photo-pop {
+        width: min(13rem, 80vw);
+    }
+}
+
+/* Locks background scroll while a mobile lightbox is open */
+body.entry-photo-lock {
+    overflow: hidden;
+}
+
+/*
+ * Touch devices (no hover): the thumbnail becomes a clearly tappable button,
+ * and tapping opens a centered lightbox with a dimmed backdrop instead of an
+ * upward popover that could clip off-screen.
+ */
+@media (hover: none) {
+    /* Slightly larger, comfortable tap target */
+    .entry-photo-thumb {
+        width: 3.15rem;
+        height: 3.15rem;
+    }
+
+    /* Affordance badge: signals the thumbnail is tappable to enlarge */
+    .entry-photo::after {
+        content: "\f00e"; /* fa-magnifying-glass-plus */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        right: -5px;
+        bottom: -5px;
+        width: 1.15rem;
+        height: 1.15rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.62rem;
+        color: #fff;
+        background-color: var(--color-accent);
+        border: 2px solid var(--color-surface);
+        border-radius: 50%;
+        box-shadow: var(--shadow-sm);
+        pointer-events: none;
+    }
+
+    .entry-photo.is-placeholder::after {
+        content: "\f030"; /* fa-camera on placeholders */
+        background-color: var(--color-text-subtle);
+    }
+
+    /* Full-screen dim backdrop behind the lightbox */
+    .entry-photo.is-open::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-color: rgba(8, 14, 22, 0.62);
+        z-index: 60;
+        animation: entry-photo-fade 0.18s ease;
+    }
+
+    /* Popover → centered lightbox */
+    .entry-photo-pop {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        right: auto;
+        bottom: auto;
+        width: min(22rem, 88vw);
+        max-width: none;
+        padding: 0.6rem;
+        border-radius: 16px;
+        transform: translate(-50%, -46%) scale(0.98);
+        transform-origin: center;
+        z-index: 61;
+    }
+
+    .entry-photo.is-open .entry-photo-pop {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .entry-photo-pop-frame {
+        aspect-ratio: 4 / 3;
+    }
+
+    .entry-photo-caption {
+        margin-top: 0.55rem;
+        font-size: 0.86rem;
+    }
+
+    /* Visible close cue in the lightbox corner */
+    .entry-photo-pop::after {
+        content: "\f00d"; /* fa-xmark */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        top: -0.7rem;
+        right: -0.7rem;
+        width: 1.7rem;
+        height: 1.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        color: var(--color-text);
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 50%;
+        box-shadow: var(--shadow-md);
+    }
+}
+
+@keyframes entry-photo-fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .entry-photo.is-open::before {
+        animation: none;
     }
 }
 

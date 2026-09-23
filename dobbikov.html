@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Visual history graph of DobbiKov, also known as Roman Zapotockiy."
+  >
+
+  <title>DobbiKov — History Graph</title>
+
+  <style>
+    :root {
+      --page: #f3f5f7;
+      --surface: #ffffff;
+      --surface-secondary: #f8fafc;
+      --text: #1f2328;
+      --muted: #656d76;
+      --border: #d0d7de;
+      --line: #9aa4af;
+      --blue: #0969da;
+      --blue-soft: #ddf4ff;
+      --green: #1a7f37;
+      --green-soft: #dafbe1;
+      --orange: #bc4c00;
+      --orange-soft: #fff1e5;
+      --purple: #8250df;
+      --purple-soft: #fbefff;
+      --red: #cf222e;
+      --red-soft: #ffebe9;
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .header-label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    main {
+      padding: 32px 0 56px;
+    }
+
+    .intro {
+      margin-bottom: 24px;
+      padding: 26px 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    .intro p {
+      max-width: 760px;
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      margin-top: 22px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-company {
+      background: var(--blue);
+    }
+
+    .dot-project {
+      background: var(--green);
+    }
+
+    .dot-team {
+      background: var(--orange);
+    }
+
+    .dot-media {
+      background: var(--purple);
+    }
+
+    .dot-ending {
+      background: var(--red);
+    }
+
+    .graph-card {
+      padding: 32px;
+      overflow-x: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .graph {
+      min-width: 1040px;
+    }
+
+    .graph-root {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      padding-bottom: 54px;
+    }
+
+    .graph-root::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 2px;
+      height: 54px;
+      background: var(--line);
+      transform: translateX(-50%);
+    }
+
+    .root-node {
+      width: 330px;
+      padding: 22px;
+      text-align: center;
+      background: var(--surface);
+      border: 2px solid var(--text);
+      border-radius: 10px;
+    }
+
+    .root-node h2 {
+      margin-bottom: 3px;
+      font-size: 22px;
+    }
+
+    .root-node .real-name {
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .root-node .period {
+      display: inline-block;
+      padding: 4px 9px;
+      background: #f0f2f4;
+      border-radius: 12px;
+      color: #4b5563;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .branches {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+      padding-top: 54px;
+    }
+
+    .branches::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 12.5%;
+      right: 12.5%;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .branch {
+      position: relative;
+    }
+
+    .branch::before {
+      content: "";
+      position: absolute;
+      top: -54px;
+      left: 50%;
+      width: 2px;
+      height: 54px;
+      background: var(--line);
+      transform: translateX(-50%);
+    }
+
+    .node {
+      position: relative;
+      padding: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top-width: 4px;
+      border-radius: 8px;
+    }
+
+    .node-company {
+      border-top-color: var(--blue);
+    }
+
+    .node-project {
+      border-top-color: var(--green);
+    }
+
+    .node-team {
+      border-top-color: var(--orange);
+    }
+
+    .node-media {
+      border-top-color: var(--purple);
+    }
+
+    .node-ending {
+      border-top-color: var(--red);
+    }
+
+    .node-type {
+      margin-bottom: 7px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .node h3 {
+      margin-bottom: 3px;
+      font-size: 17px;
+      line-height: 1.3;
+    }
+
+    .node-title {
+      margin-bottom: 4px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .node-period {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .node-description {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .children {
+      position: relative;
+      display: grid;
+      gap: 16px;
+      margin-top: 38px;
+      padding-top: 22px;
+    }
+
+    .children::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 22px;
+      background: var(--line);
+      transform: translateX(-50%);
+    }
+
+    .child {
+      position: relative;
+      padding: 15px;
+      background: var(--surface-secondary);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+    }
+
+    .child::before {
+      content: "";
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      width: 2px;
+      height: 16px;
+      background: var(--line);
+      transform: translateX(-50%);
+    }
+
+    .child h4 {
+      margin-bottom: 3px;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .child-period {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .child-description {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .company-projects {
+      display: grid;
+      gap: 12px;
+    }
+
+    .company-project {
+      padding: 13px;
+      background: var(--blue-soft);
+      border: 1px solid #b6d7f2;
+      border-radius: 6px;
+    }
+
+    .company-project strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 13px;
+    }
+
+    .company-project span {
+      color: #4c6072;
+      font-size: 12px;
+    }
+
+    .ending-section {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-top: 54px;
+      padding-top: 54px;
+    }
+
+    .ending-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 54px;
+      background: var(--line);
+      transform: translateX(-50%);
+    }
+
+    .ending-node {
+      width: 420px;
+      padding: 20px;
+      text-align: center;
+      background: var(--red-soft);
+      border: 1px solid #f1b5b8;
+      border-top: 4px solid var(--red);
+      border-radius: 8px;
+    }
+
+    .ending-node h3 {
+      margin-bottom: 4px;
+      font-size: 18px;
+    }
+
+    .ending-node p {
+      margin: 10px 0 0;
+      color: #6d3b3f;
+      font-size: 13px;
+    }
+
+    .chronology-card {
+      margin-top: 20px;
+      padding: 26px 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .chronology-card h2 {
+      margin-bottom: 22px;
+      font-size: 20px;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 7%;
+      right: 7%;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .year {
+      position: relative;
+      text-align: center;
+    }
+
+    .year-dot {
+      width: 14px;
+      height: 14px;
+      margin: 6px auto 12px;
+      position: relative;
+      z-index: 1;
+      background: var(--surface);
+      border: 3px solid var(--blue);
+      border-radius: 50%;
+    }
+
+    .year:last-child .year-dot {
+      border-color: var(--red);
+    }
+
+    .year strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .year span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    footer {
+      padding: 24px 0 36px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      .header-label {
+        display: none;
+      }
+
+      main {
+        padding-top: 18px;
+      }
+
+      .intro,
+      .graph-card,
+      .chronology-card {
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+      .chronology-card {
+        overflow-x: auto;
+      }
+
+      .timeline {
+        min-width: 700px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container header-inner">
+      <a class="brand" href="#">DobbiKov History</a>
+      <div class="header-label">Career and project graph · 2017–2022</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <h1>DobbiKov — Roman Zapotockiy</h1>
+
+      <p>
+        A visual overview of the organizations, projects, teams and roles
+        connected to the DobbiKov character between 2017 and 2022.
+      </p>
+
+      <div class="legend">
+        <div class="legend-item">
+          <span class="legend-dot dot-company"></span>
+          Company
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-dot dot-project"></span>
+          Project
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-dot dot-team"></span>
+          Team and esports
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-dot dot-media"></span>
+          Media
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-dot dot-ending"></span>
+          End of character
+        </div>
+      </div>
+    </section>
+
+    <section class="graph-card">
+      <div class="graph">
+        <div class="graph-root">
+          <article class="root-node">
+            <h2>DobbiKov</h2>
+            <div class="real-name">Roman Zapotockiy</div>
+            <div class="period">Active character · 2017–2022</div>
+          </article>
+        </div>
+
+        <div class="branches">
+          <div class="branch">
+            <article class="node node-company">
+              <div class="node-type">Company</div>
+              <h3>UNIGVA Company</h3>
+              <div class="node-title">Founder and CEO</div>
+              <div class="node-period">2020–2022</div>
+
+              <p class="node-description">
+                Umbrella company connecting gaming projects and communities.
+              </p>
+
+              <div class="children">
+                <div class="company-projects">
+                  <div class="company-project">
+                    <strong>Unigva RolePlay</strong>
+                    <span>CRMP roleplay project</span>
+                  </div>
+
+                  <div class="company-project">
+                    <strong>Liquid RolePlay</strong>
+                    <span>Rage MP · GTA V</span>
+                  </div>
+
+                  <div class="company-project">
+                    <strong>WEST Clan</strong>
+                    <span>PUBG Mobile and COD Mobile</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="branch">
+            <article class="node node-team">
+              <div class="node-type">Gaming organization</div>
+              <h3>WEST Clan</h3>
+              <div class="node-title">Founder and Clan Owner</div>
+              <div class="node-period">2018–2022</div>
+
+              <div class="children">
+                <article class="child">
+                  <h4>Clan CEO</h4>
+                  <div class="child-period">2018–2020</div>
+                </article>
+
+                <article class="child">
+                  <h4>Community and Media Manager</h4>
+                  <div class="child-period">2019–2020</div>
+                </article>
+
+                <article class="child">
+                  <h4>RED Team Coach</h4>
+                  <div class="child-period">2019–2020</div>
+                </article>
+
+                <article class="child">
+                  <h4>Team Manager</h4>
+                  <div class="child-period">2018–2019</div>
+                </article>
+
+                <article class="child">
+                  <h4>Captain and Active Roster Player</h4>
+                  <div class="child-period">2018–2019</div>
+                </article>
+
+                <article class="child">
+                  <h4>WEST Clan PUBG RED Team</h4>
+                  <div class="child-period">2018–2019</div>
+                </article>
+              </div>
+            </article>
+          </div>
+
+          <div class="branch">
+            <article class="node node-project">
+              <div class="node-type">Roleplay project</div>
+              <h3>Unigva RolePlay</h3>
+              <div class="node-title">Founder, Owner and Developer</div>
+              <div class="node-period">2017–2022</div>
+
+              <div class="children">
+                <article class="child">
+                  <h4>Founder and Owner</h4>
+                  <div class="child-period">2017–2022</div>
+                </article>
+
+                <article class="child">
+                  <h4>Developer</h4>
+                  <div class="child-period">2017–2022</div>
+                </article>
+
+                <article class="child">
+                  <h4>Chief Executive Officer</h4>
+                  <div class="child-period">2017–2020</div>
+                </article>
+              </div>
+            </article>
+          </div>
+
+          <div class="branch">
+            <article class="node node-media">
+              <div class="node-type">Media</div>
+              <h3>DOBBI CRMP</h3>
+              <div class="node-title">YouTube Content Creator</div>
+              <div class="node-period">2017–2019</div>
+
+              <p class="node-description">
+                Gaming content focused on CRMP and the first public identity
+                associated with DobbiKov.
+              </p>
+
+              <div class="children">
+                <article class="child">
+                  <h4>Gaming videos</h4>
+                  <div class="child-period">CRMP content</div>
+                </article>
+
+                <article class="child">
+                  <h4>Community development</h4>
+                  <div class="child-period">Early DobbiKov audience</div>
+                </article>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="ending-section">
+          <article class="ending-node">
+            <div class="node-type">Final event</div>
+            <h3>End of the DobbiKov Character</h3>
+            <div class="node-period">2022</div>
+
+            <p>
+              The DobbiKov character concluded after five years of gaming,
+              development, team management and content creation.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="chronology-card">
+      <h2>Chronology</h2>
+
+      <div class="timeline">
+        <div class="year">
+          <div class="year-dot"></div>
+          <strong>2017</strong>
+          <span>DOBBI CRMP begins</span>
+          <span>Unigva RolePlay founded</span>
+        </div>
+
+        <div class="year">
+          <div class="year-dot"></div>
+          <strong>2018</strong>
+          <span>WEST Clan founded</span>
+          <span>PUBG RED Team begins</span>
+        </div>
+
+        <div class="year">
+          <div class="year-dot"></div>
+          <strong>2019</strong>
+          <span>Moves from player and captain to coaching and media</span>
+        </div>
+
+        <div class="year">
+          <div class="year-dot"></div>
+          <strong>2020</strong>
+          <span>UNIGVA Company founded</span>
+          <span>Founder and CEO</span>
+        </div>
+
+        <div class="year">
+          <div class="year-dot"></div>
+          <strong>2021</strong>
+          <span>UNIGVA projects and communities continue</span>
+        </div>
+
+        <div class="year">
+          <div class="year-dot"></div>
+          <strong>2022</strong>
+          <span>End of the DobbiKov character</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    DobbiKov · Roman Zapotockiy · Character history graph
+  </footer>
+</body>
+</html>
