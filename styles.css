@@ -1495,6 +1495,12 @@ code {
     height: 100%;
     object-fit: cover;
     display: block;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.entry-photo-pop-frame img.is-loaded {
+    opacity: 1;
 }
 
 .entry-photo.is-placeholder .entry-photo-pop-frame::after {
@@ -1546,6 +1552,23 @@ body.entry-photo-lock {
  * upward popover that could clip off-screen.
  */
 @media (hover: none) {
+    /*
+     * Only a tap (.is-open) reveals anything. iOS fires :hover/:focus on the
+     * first tap and, if that visibly changes the page, holds back the click
+     * until a second tap, so neutralise every hover/focus effect here.
+     */
+    .entry-photo:not(.is-open):hover .entry-photo-thumb,
+    .entry-photo:not(.is-open):focus-within .entry-photo-thumb {
+        transform: none;
+        border-color: var(--color-border-soft);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .entry-photo:not(.is-open) .entry-photo-pop {
+        opacity: 0;
+        visibility: hidden;
+    }
+
     /* Slightly larger, comfortable tap target */
     .entry-photo-thumb {
         width: 3.15rem;

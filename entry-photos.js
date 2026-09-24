@@ -23,6 +23,7 @@
 
     function open(el) {
         if (openEl && openEl !== el) openEl.classList.remove("is-open");
+        loadFull(el);
         el.classList.add("is-open");
         openEl = el;
         if (coarse.matches) document.body.classList.add("entry-photo-lock");
@@ -34,18 +35,27 @@
     }
 
     // The page ships only the small thumbnails; the full-size preview is
-    // fetched the first time an entry is hovered, focused or tapped.
+    // fetched the first time an entry is hovered, focused or opened. It stays
+    // transparent until fully decoded so it never shows half-downloaded.
     function loadFull(el) {
         const img = el.querySelector(".entry-photo-pop img[data-src]");
         if (!img) return;
+        img.addEventListener("load", () => img.classList.add("is-loaded"), {
+            once: true,
+        });
         img.src = img.dataset.src;
         img.removeAttribute("data-src");
     }
 
     items.forEach((el) => {
-        ["pointerenter", "focusin", "touchstart"].forEach((type) =>
-            el.addEventListener(type, () => loadFull(el), { passive: true }),
-        );
+        // Mouse/keyboard only: on touch, iOS treats a DOM change during the
+        // emulated hover as "hover content" and swallows the first tap.
+        el.addEventListener("pointerenter", (e) => {
+            if (e.pointerType === "mouse") loadFull(el);
+        });
+        el.addEventListener("focusin", () => {
+            if (!coarse.matches) loadFull(el);
+        });
 
         el.addEventListener("click", (e) => {
             // Hover-capable devices use the CSS :hover reveal; leave them alone.
