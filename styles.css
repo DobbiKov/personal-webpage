@@ -1727,10 +1727,9 @@ body.entry-photo-lock {
         var(--color-accent) 15%
     );
     border-radius: 10px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    min-height: 44px;
-    padding: 0.5rem 0.75rem;
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1741,11 +1740,6 @@ body.entry-photo-lock {
         border-color 0.2s ease;
 }
 
-.project-link::after {
-    content: "↗";
-    margin-left: 0.35rem;
-    font-size: 0.9rem;
-}
 
 .project-link:hover,
 .project-link:focus-visible {
@@ -1874,20 +1868,6 @@ body.entry-photo-lock {
     .aboutme-text,
     .project-info {
         font-size: 0.96rem;
-    }
-
-    .project-item {
-        grid-template-columns: 1fr;
-        align-items: start;
-    }
-
-    .project-info {
-        margin-bottom: 0.35rem;
-        text-align: center;
-    }
-
-    .project-link {
-        min-width: 100%;
     }
 
     .contactme-sections {
