@@ -33,7 +33,20 @@
         else open(el);
     }
 
+    // The page ships only the small thumbnails; the full-size preview is
+    // fetched the first time an entry is hovered, focused or tapped.
+    function loadFull(el) {
+        const img = el.querySelector(".entry-photo-pop img[data-src]");
+        if (!img) return;
+        img.src = img.dataset.src;
+        img.removeAttribute("data-src");
+    }
+
     items.forEach((el) => {
+        ["pointerenter", "focusin", "touchstart"].forEach((type) =>
+            el.addEventListener(type, () => loadFull(el), { passive: true }),
+        );
+
         el.addEventListener("click", (e) => {
             // Hover-capable devices use the CSS :hover reveal; leave them alone.
             if (!coarse.matches) return;
