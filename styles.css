@@ -129,6 +129,58 @@ code {
     z-index: 1;
 }
 
+/* Hero entrance: photo, name, subtitle, icons and nav rise in a short
+   stagger while the Fourier trace starts drawing behind them. `backwards`
+   fill so no transform lingers after the animation. */
+.main_cont_about > img,
+.main_cont_about_inner h1,
+.main_cont_about_inner h2,
+.main_cont_about_inner_icons,
+#hero-nav {
+    animation: hero-rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+.main_cont_about > img {
+    animation-delay: 0.1s;
+}
+
+.main_cont_about_inner h1 {
+    animation-delay: 0.18s;
+}
+
+.main_cont_about_inner h2 {
+    animation-delay: 0.26s;
+}
+
+.main_cont_about_inner_icons {
+    animation-delay: 0.34s;
+}
+
+#hero-nav {
+    animation-delay: 0.42s;
+}
+
+@keyframes hero-rise {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .main_cont_about > img,
+    .main_cont_about_inner h1,
+    .main_cont_about_inner h2,
+    .main_cont_about_inner_icons,
+    #hero-nav {
+        animation: none;
+    }
+}
+
 /* Arrow at the bottom of the hero hinting that the page continues */
 .main_cont {
     padding-bottom: 5rem;
@@ -2251,14 +2303,25 @@ button:focus-visible {
     right: 0;
     z-index: 100;
     background-color: var(--color-bg);
-    display: none;
+    display: flex;
     justify-content: center;
     padding: 0 1rem;
     border-bottom: 1px solid var(--color-border-soft);
+    /* Parked above the viewport; visibility flips after the slide so hidden
+       links can't take focus */
+    transform: translateY(-100%);
+    visibility: hidden;
+    transition:
+        transform 0.2s ease-in,
+        visibility 0s linear 0.2s;
 }
 
 .site-header.is-visible {
-    display: flex;
+    transform: translateY(0);
+    visibility: visible;
+    transition:
+        transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1),
+        visibility 0s;
 }
 
 .site-header-inner {
