@@ -129,6 +129,83 @@ code {
     z-index: 1;
 }
 
+/* Arrow at the bottom of the hero hinting that the page continues */
+.main_cont {
+    padding-bottom: 5rem;
+}
+
+.hero-scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 1.5rem;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    margin-left: -22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    opacity: 0;
+    animation:
+        hero-cue-in 0.5s ease 1.2s forwards,
+        hero-cue-bob 2.4s ease-in-out 1.7s infinite;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.hero-scroll-cue:hover,
+.hero-scroll-cue:focus-visible {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-accent-contrast);
+}
+
+@keyframes hero-cue-in {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes hero-cue-bob {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(4px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-scroll-cue {
+        opacity: 1;
+        animation: none;
+    }
+}
+
+/* Too short to fit it below the nav without crowding */
+@media (max-height: 520px) {
+    .main_cont {
+        padding-bottom: 1rem;
+    }
+
+    .hero-scroll-cue {
+        display: none;
+    }
+}
+
 .lect_notes_main_cont {
     flex-direction: column;
     padding-bottom: 2rem;
@@ -372,7 +449,7 @@ code {
 
 @media (max-width: 650px) {
     .main_cont {
-        padding: 0.75rem;
+        padding: 0.75rem 0.75rem 5rem;
     }
 
     .main_cont_inner {
