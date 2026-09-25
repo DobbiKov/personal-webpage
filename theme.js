@@ -211,7 +211,52 @@
 
     const allNavRoots = [heroNav, siteHeader];
 
+    // Desktop: one bar per nav that slides to the active link instead of each
+    // link growing its own underline (styles.css: .nav-indicator).
+    const indicators = [heroNav, siteHeader.querySelector('.main_cont_routs')]
+      .filter(Boolean)
+      .map((nav) => {
+        const bar = document.createElement('span');
+        bar.className = 'nav-indicator';
+        bar.setAttribute('aria-hidden', 'true');
+        nav.appendChild(bar);
+        nav.classList.add('has-nav-indicator');
+        return { nav, bar };
+      });
+
+    const placeIndicators = (animate) => {
+      indicators.forEach(({ nav, bar }) => {
+        const link = nav.querySelector('.main_cont_routs_active');
+        if (mobileNavMedia.matches || !link || !link.getClientRects().length) {
+          bar.style.opacity = '0';
+          return;
+        }
+
+        const navRect = nav.getBoundingClientRect();
+        const linkRect = link.getBoundingClientRect();
+        const style = getComputedStyle(link);
+        const padLeft = parseFloat(style.paddingLeft) || 0;
+        const padRight = parseFloat(style.paddingRight) || 0;
+
+        bar.classList.toggle('no-anim', !animate);
+        bar.style.top = `${linkRect.bottom - navRect.top - 8}px`;
+        bar.style.width = `${linkRect.width - padLeft - padRight}px`;
+        bar.style.transform = `translateX(${linkRect.left - navRect.left + padLeft}px)`;
+        bar.style.opacity = '1';
+        if (!animate) {
+          void bar.offsetWidth; // commit the jump before re-enabling transitions
+          bar.classList.remove('no-anim');
+        }
+      });
+    };
+
+    let currentId = null;
+
     const setActive = (activeId) => {
+      if (activeId === currentId) return;
+      const isFirst = currentId === null;
+      currentId = activeId;
+
       allNavRoots.forEach((nav) => {
         nav.querySelectorAll('.main_header_a').forEach((link) => {
           const isBrand = link.classList.contains('main_brand');
@@ -231,6 +276,8 @@
           }
         });
       });
+
+      placeIndicators(!isFirst);
     };
 
     const update = () => {
@@ -257,6 +304,14 @@
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update, { passive: true });
     update();
+
+    // Link widths change with the viewport and once the web font arrives.
+    const replace = () => placeIndicators(false);
+    window.addEventListener('resize', replace, { passive: true });
+    mobileNavMedia.addEventListener('change', replace);
+    if (document.fonts) {
+      document.fonts.ready.then(replace);
+    }
   };
 
   initializeThemeToggle();

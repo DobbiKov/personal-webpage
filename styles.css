@@ -384,6 +384,7 @@ code {
 }
 
 .main_cont_routs {
+    position: relative; /* anchors .nav-indicator */
     width: 100%;
     background-color: var(--color-surface-muted);
     margin-top: 1rem;
@@ -470,6 +471,39 @@ code {
 .main_cont_routs .main_header_a:focus-visible::after,
 .main_cont_routs .main_cont_routs_active::after {
     transform: scaleX(1);
+}
+
+/* Sliding active-link bar (theme.js) — desktop only; phones keep the
+   per-link underline since their links live in a dropdown. */
+.nav-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: var(--color-text);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+        width 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+        opacity 0.2s ease;
+}
+
+.nav-indicator.no-anim {
+    transition: none;
+}
+
+@media (min-width: 651px) {
+    .main_cont_routs.has-nav-indicator .main_cont_routs_active::after {
+        transform: scaleX(0);
+    }
+}
+
+@media (max-width: 650px) {
+    .nav-indicator {
+        display: none;
+    }
 }
 
 .theme-toggle {
