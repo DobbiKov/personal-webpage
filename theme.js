@@ -82,9 +82,38 @@
     document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
       button.addEventListener("click", () => {
         const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
-        applyTheme(nextTheme, true);
+        switchTheme(nextTheme);
       });
     });
+  };
+
+  // Restart the icon's turn-in animation (styles.css: .theme-icon-turn).
+  const turnIcons = () => {
+    document.querySelectorAll("[data-theme-icon]").forEach((icon) => {
+      icon.classList.remove("theme-icon-turn");
+      void icon.offsetWidth; // reflow so the animation can replay
+      icon.classList.add("theme-icon-turn");
+    });
+  };
+
+  // User-initiated switch: crossfade the whole page between the old and new
+  // colours with the View Transitions API where available, snap otherwise.
+  const switchTheme = (theme) => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const update = () => {
+      applyTheme(theme, true);
+      if (!reduceMotion) {
+        turnIcons();
+      }
+    };
+
+    if (reduceMotion || typeof document.startViewTransition !== "function") {
+      update();
+      return;
+    }
+    // A skipped transition (e.g. the tab is hidden) still runs update(); only
+    // the animation is dropped, so swallow the rejection.
+    document.startViewTransition(update).ready.catch(() => {});
   };
 
   const initializeNavigationToggle = () => {

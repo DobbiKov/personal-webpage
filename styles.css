@@ -505,6 +505,29 @@ code {
     line-height: 1;
 }
 
+/* Theme switch (theme.js): the page crossfades via a view transition and
+   the sun/moon turns in. */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.35s;
+    animation-timing-function: ease;
+}
+
+.theme-icon-turn {
+    animation: theme-icon-turn 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes theme-icon-turn {
+    from {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.6);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 .sr-only {
     position: absolute;
     width: 1px;
