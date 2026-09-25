@@ -34,7 +34,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="styles.css?v=fourier-bg" />
+        <link rel="stylesheet" href="styles.css?v=fourier-x" />
         <title>Yehor Korotenko — Developer & Math/CS Student</title>
         <meta
             name="description"
@@ -244,7 +244,19 @@
                 <h1 class="lect_notes_page-title">About Me</h1>
                 <h2 class="lect_notes_page-sub_title">Yehor Korotenko</h2>
                 <div class="aboutme-sections">
-                    <div class="section aboutme-section first-text-about-me">
+                    <!-- Background: the X as a limit of Fourier series (fourier-x.js).
+                         Covers Education on mobile, Summary + Education on desktop. -->
+                    <div
+                        class="aboutme-fourier"
+                        data-fourier-x
+                        data-mobile="education"
+                        data-desktop="summary education"
+                        aria-hidden="true"
+                    ></div>
+                    <div
+                        class="section aboutme-section first-text-about-me"
+                        id="summary"
+                    >
                         <h2 class="section-title aboutme-section-title">
                             Summary
                         </h2>
@@ -267,7 +279,7 @@
                         </div>
                     </div>
 
-                    <div class="section aboutme-section">
+                    <div class="section aboutme-section" id="education">
                         <h2 class="section-title aboutme-section-title">
                             Education
                         </h2>
@@ -1057,5 +1069,6 @@
         <script src="theme.js"></script>
         <script src="entry-photos.js"></script>
         <script src="fourier-bg.js"></script>
+        <script src="fourier-x.js"></script>
     </body>
 </html>

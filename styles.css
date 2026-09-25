@@ -1197,10 +1197,22 @@ code {
 }
 
 .aboutme-sections {
+    position: relative;
+    isolation: isolate; /* keeps .aboutme-fourier behind the text, above the page */
     display: flex;
     flex-direction: column;
     gap: 3rem;
     margin-top: 1.5rem;
+}
+
+/* Faint Fourier-series X behind Education (+ Summary on desktop); top/height set by fourier-x.js */
+.aboutme-fourier {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    opacity: 0.14;
+    pointer-events: none;
 }
 
 .aboutme-section {
