@@ -1494,6 +1494,115 @@ code {
     }
 }
 
+/* ── Experience entries (same header rhythm as the education cards) ── */
+.exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.exp-entry {
+    display: flex;
+    gap: 1.1rem;
+    align-items: flex-start;
+}
+
+.exp-entry-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.exp-title-group {
+    flex: 1;
+    min-width: 0;
+}
+
+.exp-org {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 0.2rem;
+}
+
+/* Linked and unlinked org names read the same; the underline marks the link */
+.aboutme-section .exp-org a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 3px;
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+.aboutme-section .exp-org a:hover,
+.aboutme-section .exp-org a:focus-visible {
+    color: var(--color-accent);
+    text-decoration-color: currentColor;
+}
+
+.exp-role {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.exp-dates {
+    font-size: 0.82rem;
+    color: var(--color-text-subtle);
+    white-space: nowrap;
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+}
+
+.exp-desc {
+    margin: 0.45rem 0 0;
+    font-size: 0.92rem;
+    line-height: 1.58;
+    color: var(--color-text-muted);
+}
+
+/* Several roles at one organisation: org named once, roles hang off a hairline */
+.exp-group > .exp-org {
+    margin-bottom: 0.6rem;
+}
+
+.exp-group-roles {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 0.9rem;
+    border-left: 1px solid var(--color-border);
+}
+
+.exp-group-roles .exp-role {
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+@media (max-width: 480px) {
+    .exp-entry {
+        gap: 0.8rem;
+    }
+
+    .exp-header {
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    .exp-dates {
+        padding-top: 0;
+    }
+}
+
 /* ── Entry photos (education & experience reveal-on-hover) ── */
 .entry-photo {
     position: relative;
@@ -1502,18 +1611,6 @@ code {
     vertical-align: top;
     outline: none;
     -webkit-tap-highlight-color: transparent;
-}
-
-/* Absolutely-anchored variant for experience paragraphs */
-.aboutme-text:has(> .entry-photo) {
-    position: relative;
-    padding-right: 3.9rem;
-}
-
-.aboutme-text > .entry-photo {
-    position: absolute;
-    top: 0.1rem;
-    right: 0;
 }
 
 .entry-photo-thumb {
