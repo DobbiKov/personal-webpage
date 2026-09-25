@@ -1,6 +1,7 @@
 (() => {
   const THEME_KEY = "dobbikov-theme";
-  const LIGHT_THEME_COLOR = "#2a5d8f";
+  // Fallbacks only; the browser bar normally takes the page's own --color-bg.
+  const LIGHT_THEME_COLOR = "#f3f4f6";
   const DARK_THEME_COLOR = "#10161d";
   const MOBILE_NAV_QUERY = "(max-width: 650px)";
   const root = document.documentElement;
@@ -27,10 +28,16 @@
     return getStoredTheme() || getSystemTheme();
   };
 
+  // Match the browser toolbar to the page background so it reads as one surface.
   const updateThemeColor = (theme) => {
-    if (themeColorMeta) {
-      themeColorMeta.setAttribute("content", theme === "dark" ? DARK_THEME_COLOR : LIGHT_THEME_COLOR);
+    if (!themeColorMeta) {
+      return;
     }
+    const pageBg = getComputedStyle(root).getPropertyValue("--color-bg").trim();
+    themeColorMeta.setAttribute(
+      "content",
+      pageBg || (theme === "dark" ? DARK_THEME_COLOR : LIGHT_THEME_COLOR),
+    );
   };
 
   const updateToggleButtons = (theme) => {
