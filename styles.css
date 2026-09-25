@@ -102,9 +102,25 @@ code {
 }
 
 .main_cont {
+    position: relative;
+    overflow: hidden;
     min-height: 100dvh;
     background-color: var(--color-bg);
     padding: 1rem;
+}
+
+/* Faint Fourier-series animation behind the hero (fourier-bg.js) */
+.hero-fourier {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.22;
+    pointer-events: none;
+}
+
+.main_cont > .main_cont_inner {
+    position: relative;
+    z-index: 1;
 }
 
 .lect_notes_main_cont {
