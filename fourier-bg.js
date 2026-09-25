@@ -226,10 +226,44 @@
     ctx.stroke();
   };
 
+  // Once finished, replace the canvas with an inline SVG of the final frame:
+  // the canvas backing store (MBs on large screens) is freed, the vector stays
+  // sharp at any size, and theme/resize are handled by CSS with no script.
+  let done = false;
+  const finish = () => {
+    const r = (v) => Math.round(v * 1e4) / 1e4;
+    let d = "";
+    for (const shape of shapes) {
+      const p = partialSum(shape.terms, N_MAX, scratch);
+      d += `M${r(p[0])} ${r(p[1])}L`;
+      for (let j = 1; j < SAMPLES; j++) d += `${r(p[2 * j])} ${r(p[2 * j + 1])} `;
+      d += "Z";
+    }
+    // Same fit rule as resize(): meet = min(width·FILL, height·MAX_HEIGHT/WORD_HEIGHT).
+    const vw = 1 / FILL, vh = WORD_HEIGHT / MAX_HEIGHT;
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", `${-vw / 2} ${-vh / 2} ${vw} ${vh}`);
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    svg.style.cssText = "display:block;width:100%;height:100%;overflow:visible;";
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", d);
+    path.setAttribute("fill-rule", "evenodd");
+    path.setAttribute("vector-effect", "non-scaling-stroke");
+    path.setAttribute("stroke-linejoin", "round");
+    path.setAttribute("stroke-width", String(Math.max(1, Math.min(1.6, view.scale / 400))));
+    path.style.cssText = "fill:var(--color-text,#edf3fa);stroke:var(--color-text,#edf3fa);";
+    svg.appendChild(path);
+    container.appendChild(svg);
+    canvas.width = canvas.height = 0; // release the backing store right away
+    canvas.remove();
+    done = true;
+  };
+
   const tick = (now) => {
     const time = (now - startTime) / 1000;
     draw(time);
     if (time < T_TOTAL) rafId = requestAnimationFrame(tick);
+    else finish();
   };
 
   const play = () => {
@@ -244,12 +278,13 @@
 
   // Repaint once when idle (after the animation, or before it has started).
   const redrawIdle = () => {
-    if (startTime === null) return;
+    if (startTime === null || done) return;
     const time = (performance.now() - startTime) / 1000;
     if (time >= T_TOTAL) draw(T_TOTAL);
   };
 
   new ResizeObserver(() => {
+    if (done) return; // the SVG scales itself
     resize();
     redrawIdle();
   }).observe(container);
