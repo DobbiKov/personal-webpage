@@ -118,6 +118,12 @@ code {
     pointer-events: none;
 }
 
+/* Thin lines need more opacity than a filled shape to read (data-end: fourier-bg.js) */
+.hero-fourier[data-end="outline"],
+.hero-fourier[data-end="fill-fade"] {
+    opacity: 0.35;
+}
+
 .main_cont > .main_cont_inner {
     position: relative;
     z-index: 1;
@@ -1213,6 +1219,11 @@ code {
     z-index: -1;
     opacity: 0.14;
     pointer-events: none;
+}
+
+.aboutme-fourier[data-end="outline"],
+.aboutme-fourier[data-end="fill-fade"] {
+    opacity: 0.25;
 }
 
 .aboutme-section {

@@ -45,8 +45,26 @@
   const T_TRACE = 4.2;
   const T_HOLD = 0.6;
   const T_CONVERGE = 3.6;
-  const T_FILL = 0.9;
-  const T_TOTAL = T_TRACE + T_HOLD + T_CONVERGE + T_FILL;
+
+  // How the animation ends — data-end on the element, or ?fx-end=… in the URL
+  // to compare without editing the HTML:
+  //   "outline"   the converged curve stays a line; the stroke pulses once
+  //   "fill"      the shape fills in and stays filled
+  //   "fill-fade" fills in, holds, then fades back to the outline
+  const END_DURATIONS = { outline: 0.9, fill: 0.9, "fill-fade": 2.4 };
+  const END = (() => {
+    let v = null;
+    try {
+      v = new URLSearchParams(window.location.search).get("fx-end");
+    } catch (error) {
+      // Ignore malformed URLs.
+    }
+    v = v || container.dataset.end;
+    return Object.hasOwn(END_DURATIONS, v) ? v : "outline";
+  })();
+  container.dataset.end = END; // CSS tunes the layer's opacity per style
+  const T_END = END_DURATIONS[END];
+  const T_TOTAL = T_TRACE + T_HOLD + T_CONVERGE + T_END;
 
   // ---------- Fourier series ----------
 
@@ -111,6 +129,16 @@
 
   const clamp01 = (x) => Math.max(0, Math.min(1, x));
   const smooth = (x) => x * x * (3 - 2 * x);
+
+  // Fill opacity and stroke-width multiplier during the ending.
+  const endState = (time) => {
+    const e = clamp01((time - T_TRACE - T_HOLD - T_CONVERGE) / T_END);
+    if (END === "fill") return { fill: smooth(e), pulse: 1 };
+    if (END === "fill-fade") {
+      return { fill: smooth(clamp01(e / 0.35)) * (1 - smooth(clamp01((e - 0.6) / 0.4))), pulse: 1 };
+    }
+    return { fill: 0, pulse: 1 + 0.9 * Math.sin(Math.PI * e) };
+  };
 
   const readColors = () => {
     const s = getComputedStyle(document.documentElement);
@@ -212,7 +240,7 @@
     // Phase 2: add terms until the partial sums converge on the glyphs.
     const u = clamp01((time - T_TRACE - T_HOLD) / T_CONVERGE);
     const n = N_TRACE * Math.pow(N_MAX / N_TRACE, smooth(u));
-    const fillAlpha = smooth(clamp01((time - T_TRACE - T_HOLD - T_CONVERGE) / T_FILL));
+    const { fill: fillAlpha, pulse } = endState(time);
     ctx.beginPath();
     for (const shape of shapes) tracePath(partialSum(shape.terms, n, scratch));
     if (fillAlpha > 0) {
@@ -222,7 +250,7 @@
       ctx.globalAlpha = 1;
     }
     ctx.strokeStyle = colors.ink;
-    ctx.lineWidth = stroke;
+    ctx.lineWidth = stroke * pulse;
     ctx.stroke();
   };
 
@@ -251,7 +279,7 @@
     path.setAttribute("vector-effect", "non-scaling-stroke");
     path.setAttribute("stroke-linejoin", "round");
     path.setAttribute("stroke-width", String(Math.max(1, Math.min(1.6, view.scale / 400))));
-    path.style.cssText = "fill:var(--color-text,#edf3fa);stroke:var(--color-text,#edf3fa);";
+    path.style.cssText = `fill:${END === "fill" ? "var(--color-text,#edf3fa)" : "none"};stroke:var(--color-text,#edf3fa);`;
     svg.appendChild(path);
     container.appendChild(svg);
     canvas.width = canvas.height = 0; // release the backing store right away

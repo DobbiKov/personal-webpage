@@ -34,7 +34,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="styles.css?v=fourier-x" />
+        <link rel="stylesheet" href="styles.css?v=fourier-end" />
         <title>Yehor Korotenko — Developer & Math/CS Student</title>
         <meta
             name="description"
@@ -132,7 +132,7 @@
         <!-- Hero: identical to original, nav gets id for IntersectionObserver -->
         <main class="main_cont" id="home">
             <!-- Background: "KOROTENKY" as a limit of Fourier series (fourier-bg.js) -->
-            <div class="hero-fourier" data-fourier aria-hidden="true"></div>
+            <div class="hero-fourier" data-fourier data-end="outline" aria-hidden="true"></div>
             <section class="main_cont_inner">
                 <section class="main_cont_about">
                     <img
@@ -249,6 +249,7 @@
                     <div
                         class="aboutme-fourier"
                         data-fourier-x
+                        data-end="outline"
                         data-mobile="education"
                         data-desktop="summary education"
                         aria-hidden="true"
