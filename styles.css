@@ -129,6 +129,24 @@ code {
     z-index: 1;
 }
 
+/* Desktop: centre the word on the photo/name row instead of the whole hero,
+   so it clears the nav bar. The row sits above centre by half of (nav 44px
+   + 2×0.5rem padding + 1rem margin) plus half the hero's extra 4rem bottom
+   padding: 22px + 0.5rem + 0.5rem + 2rem. */
+@media (min-width: 651px) {
+    .hero-fourier {
+        transform: translateY(calc(-3rem - 22px));
+    }
+}
+
+/* Phones: lift the word up toward the gap between the photo and the name,
+   keeping ~8px clear of the photo (measured at 375px wide). */
+@media (max-width: 650px) {
+    .hero-fourier {
+        transform: translateY(-2.5rem);
+    }
+}
+
 /* Hero entrance: photo, name, subtitle, icons and nav rise in a short
    stagger while the Fourier trace starts drawing behind them. `backwards`
    fill so no transform lingers after the animation. */
