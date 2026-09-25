@@ -156,6 +156,8 @@
   let rafId = 0;
 
   const px = (n) => n / view.scale; // CSS px -> word units
+  // Outline width in CSS px: thin, growing slightly with the word's size.
+  const strokePx = () => Math.max(0.75, Math.min(1.1, view.scale / 600));
 
   const resize = () => {
     const rect = container.getBoundingClientRect();
@@ -211,7 +213,7 @@
     ctx.setTransform(scale * dpr, 0, 0, scale * dpr, ox * dpr, oy * dpr);
     ctx.lineJoin = "round";
     ctx.lineCap = "round";
-    const stroke = px(Math.max(1, Math.min(1.6, scale / 400)));
+    const stroke = px(strokePx());
 
     if (time < T_TRACE + T_HOLD) {
       // Phase 1: epicycles trace the N_TRACE-term curve.
@@ -278,7 +280,7 @@
     path.setAttribute("fill-rule", "evenodd");
     path.setAttribute("vector-effect", "non-scaling-stroke");
     path.setAttribute("stroke-linejoin", "round");
-    path.setAttribute("stroke-width", String(Math.max(1, Math.min(1.6, view.scale / 400))));
+    path.setAttribute("stroke-width", String(strokePx()));
     path.style.cssText = `fill:${END === "fill" ? "var(--color-text,#edf3fa)" : "none"};stroke:var(--color-text,#edf3fa);`;
     svg.appendChild(path);
     container.appendChild(svg);
