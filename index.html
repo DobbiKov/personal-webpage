@@ -34,7 +34,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="styles.css?v=experience-layout" />
+        <link rel="stylesheet" href="styles.css?v=copy-email" />
         <title>Yehor Korotenko — Developer & Math/CS Student</title>
         <meta
             name="description"
@@ -1034,9 +1034,24 @@
                                 <div class="contact-item-content">
                                     <p class="contact-label">Email</p>
                                     <a href="mailto:yehor.korotenko@polytechnique.org"
-                                        >yehor.korotenko@polytechnique.org</a
+                                        >yehor.korotenko@<wbr />polytechnique.org</a
                                     >
                                 </div>
+                                <button
+                                    class="copy-btn"
+                                    type="button"
+                                    data-copy="yehor.korotenko@polytechnique.org"
+                                    aria-label="Copy yehor.korotenko@polytechnique.org"
+                                >
+                                    <svg class="copy-btn-icon copy-btn-icon--copy" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                                        <rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
+                                        <path d="M5 15V6a2 2 0 0 1 2-2h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                    </svg>
+                                    <svg class="copy-btn-icon copy-btn-icon--done" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                                        <path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="copy-btn-label" data-copy-label>Copy</span>
+                                </button>
                             </div>
                             <div class="contact-item">
                                 <i
@@ -1049,9 +1064,24 @@
                                     </p>
                                     <a
                                         href="mailto:yehor.korotenko@polytechnique.edu"
-                                        >yehor.korotenko@polytechnique.edu</a
+                                        >yehor.korotenko@<wbr />polytechnique.edu</a
                                     >
                                 </div>
+                                <button
+                                    class="copy-btn"
+                                    type="button"
+                                    data-copy="yehor.korotenko@polytechnique.edu"
+                                    aria-label="Copy yehor.korotenko@polytechnique.edu"
+                                >
+                                    <svg class="copy-btn-icon copy-btn-icon--copy" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                                        <rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
+                                        <path d="M5 15V6a2 2 0 0 1 2-2h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                    </svg>
+                                    <svg class="copy-btn-icon copy-btn-icon--done" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                                        <path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="copy-btn-label" data-copy-label>Copy</span>
+                                </button>
                             </div>
                             <div class="contact-item">
                                 <i
@@ -1064,6 +1094,7 @@
                                 </div>
                             </div>
                         </div>
+                        <p class="sr-only" aria-live="polite" data-copy-status></p>
                     </section>
 
                     <section class="section contactme-section">
@@ -1116,6 +1147,7 @@
 
         <script src="theme.js"></script>
         <script src="entry-photos.js"></script>
+        <script src="copy-email.js"></script>
         <script src="fourier-bg.js"></script>
         <script src="fourier-x.js"></script>
     </body>

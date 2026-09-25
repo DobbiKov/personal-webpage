@@ -1167,6 +1167,100 @@ code {
     min-width: 0;
 }
 
+/* Rows with a copy button get a third column for it */
+.contact-item:has(.copy-btn) {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    align-items: center;
+}
+
+.copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 44px;
+    min-height: 36px;
+    padding: 0 0.7rem;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    border-radius: 9px;
+    background-color: var(--color-surface);
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.copy-btn:hover,
+.copy-btn:focus-visible {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.copy-btn-icon {
+    flex-shrink: 0;
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease;
+}
+
+/* Copy ↔ check swap: the two icons share one slot */
+.copy-btn-icon--done {
+    display: none;
+}
+
+.copy-btn[data-state="done"] {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent);
+    color: var(--color-accent-contrast);
+}
+
+.copy-btn[data-state="done"] .copy-btn-icon--copy {
+    display: none;
+}
+
+.copy-btn[data-state="done"] .copy-btn-icon--done {
+    display: block;
+    animation: copy-btn-pop 0.25s ease;
+}
+
+.copy-btn[data-state="error"] {
+    border-color: var(--color-error);
+    color: var(--color-error);
+}
+
+@keyframes copy-btn-pop {
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Narrow screens: icon only, the label would squeeze the address */
+@media (max-width: 480px) {
+    .copy-btn {
+        min-height: 44px;
+        padding: 0;
+    }
+
+    .copy-btn-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+    }
+}
+
 .contact-label {
     margin: 0 0 0.18rem;
     font-size: 0.73rem;
@@ -1179,7 +1273,8 @@ code {
     color: var(--color-accent);
     text-decoration: none;
     font-weight: 600;
-    overflow-wrap: anywhere;
+    /* break-word prefers the <wbr> after "@" over splitting mid-word */
+    overflow-wrap: break-word;
 }
 
 .contact-item a:hover,
@@ -2090,6 +2185,10 @@ body.entry-photo-lock {
     .contact-item {
         grid-template-columns: 36px minmax(0, 1fr);
         padding: 0.75rem 0.8rem;
+    }
+
+    .contact-item:has(.copy-btn) {
+        grid-template-columns: 36px minmax(0, 1fr) auto;
     }
 
     .contactme-page .icons {
