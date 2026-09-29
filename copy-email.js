@@ -12,6 +12,32 @@
     const RESET_MS = 2000;
     const COPY_KEYS = /Mac|iPhone|iPad/.test(navigator.userAgent) ? "⌘C" : "Ctrl+C";
 
+    // Keyed by <html lang>; English is the fallback.
+    const STRINGS = {
+        en: {
+            copy: "Copy",
+            copied: "Copied",
+            copiedStatus: (address) => `${address} copied to clipboard`,
+            press: `Press ${COPY_KEYS}`,
+            failedStatus: "Could not copy automatically; the address is selected",
+        },
+        fr: {
+            copy: "Copier",
+            copied: "Copié",
+            copiedStatus: (address) => `${address} copié dans le presse-papiers`,
+            press: `Appuyez sur ${COPY_KEYS}`,
+            failedStatus: "Copie automatique impossible ; l'adresse est sélectionnée",
+        },
+        uk: {
+            copy: "Копіювати",
+            copied: "Скопійовано",
+            copiedStatus: (address) => `${address} скопійовано в буфер обміну`,
+            press: `Натисніть ${COPY_KEYS}`,
+            failedStatus: "Не вдалося скопіювати автоматично; адресу виділено",
+        },
+    };
+    const strings = STRINGS[document.documentElement.lang] || STRINGS.en;
+
     // Hidden textarea + execCommand: works on plain http and in browsers
     // (or embedded views) that refuse the async Clipboard API.
     function legacyCopy(text) {
@@ -65,14 +91,14 @@
         button.addEventListener("click", () => {
             const address = button.dataset.copy;
             copy(address)
-                .then(() => show(button, "done", "Copied", `${address} copied to clipboard`))
+                .then(() => show(button, "done", strings.copied, strings.copiedStatus(address)))
                 .catch(() => {
                     selectAddress(button);
-                    show(button, "error", `Press ${COPY_KEYS}`, "Could not copy automatically; the address is selected");
+                    show(button, "error", strings.press, strings.failedStatus);
                 })
                 .finally(() => {
                     clearTimeout(timer);
-                    timer = setTimeout(() => show(button, "idle", "Copy"), RESET_MS);
+                    timer = setTimeout(() => show(button, "idle", strings.copy), RESET_MS);
                 });
         });
     });

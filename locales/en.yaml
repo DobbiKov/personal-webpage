@@ -1,0 +1,258 @@
+# English strings for templates/index.html. Values are HTML fragments:
+# inline tags are allowed and "&" must be written as "&amp;".
+# After editing, run: python3 build.py
+
+meta:
+  title: Yehor Korotenko — Developer &amp; Math/CS Student
+  description: >-
+    Yehor Korotenko — Software Engineer, open-source contributor, and Math &amp;
+    Computer Science student at Université Paris-Saclay, engineering student at
+    École Polytechnique de Paris. Specialising in machine translation, full-stack
+    development, and scientific tooling.
+  og_description: >-
+    Software Engineer and Math &amp; CS student at Université Paris-Saclay.
+    Working on machine translation, full-stack apps, and open-source projects.
+  og_image_alt: Yehor Korotenko — SWE, Polytechnique Student
+
+nav:
+  primary: Primary
+  open_menu: Open navigation menu
+  theme_dark: Switch to dark theme
+  about: ABOUT ME
+  lecture_notes: LECTURE NOTES
+  contact: CONTACT ME
+  language: Language
+
+social:
+  github: GitHub profile
+  linkedin: LinkedIn profile
+  email: Send an email
+
+hero:
+  portrait_alt: Portrait of Yehor Korotenko
+  name: Yehor Korotenko
+  tagline_1: SWE
+  tagline_2: Polytechnique Student
+  cv: CV
+  scroll_cue: Scroll to About Me
+
+about:
+  title: About Me
+
+summary:
+  title: Summary
+  paragraphs:
+    - >
+      I am a curious young man with over six years of
+      experience across research, freelance and
+      industry. Currently I am studying at
+      <strong>École Polytechnique de Paris</strong>
+      (X26) on Masters of Engineering (ingénieur polytechnicien).
+    - >
+      Currently working at French <strong>Departmental Fire and Rescue Service (SDIS 77)</strong>
+      where I build and train <em>machine learning</em>
+      models and develop digital services. I am experienced in
+      full-stack development, open-source
+      contribution, machine learning and math research, recently
+      published at JDSE 2025 and Ukrainian Mathematics Day.
+
+education:
+  title: Education
+  polytechnique:
+    school: École Polytechnique de Paris
+    degree: Masters of Engineering — ingénieur polytechnicien
+    dates: Aug 2026 – Aug 2030
+  saclay:
+    school: Université Paris-Saclay
+    degree: Bachelor — Dual Degree in Mathematics &amp; Computer Science
+    dates: Sept 2023 – May 2026
+    details:
+      - >
+        <strong>GPA:</strong> 18.04 / 20
+        &mdash; Top 3 of 57 students &mdash;
+        FMJH Scholarship
+      - >
+        <strong>Relevant Coursework:</strong>
+        Calculus, Analysis, Linear Algebra,
+        Abstract Algebra &amp; Group Theory,
+        Probability &amp; Statistics,
+        Algorithmics &amp; Data Structures,
+        Functional Programming, Topology,
+        Graphical Programming
+
+skills:
+  title: Technical Skills
+  items:
+    - label: "Programming Languages:"
+      value: Python, Rust, OCaml, C++, C#, JavaScript
+    - label: "Web Development:"
+      value: ASP.NET Core, Angular, React, MySQL
+    - label: "Data Science:"
+      value: Pandas, Matplotlib, NumPy, scikit-learn
+    - label: "Other Tools:"
+      value: Requests, Selenium, SQL
+    - label: "Version Control:"
+      value: Git, GitHub, GitLab
+
+experience:
+  title: Experience
+  sdis:
+    org: Departmental Fire and Rescue Service (SDIS 77)
+    firefighter:
+      role: Volunteer Firefighter
+      dates: Sept 2026 – Present
+      desc: >
+        Spending roughly half of my time serving as a volunteer firefighter,
+        responding to emergency calls and assisting with rescue and emergency
+        response operations.
+    rd:
+      role: R&amp;D Engineer
+      dates: Sept 2026 – Present
+      desc: >
+        Designing and developing machine learning models and digital tools to
+        meet the needs of the service administration and optimize its workflows.
+  lisn_2026:
+    org: LISN
+    role: Research Engineer Intern
+    dates: Jun 2026 – Jul 2026
+    desc: >
+      Leveraging adaptive machine translation to assist collaborative authoring
+      and maintenance of large multilingual scientific documents.
+  tutor:
+    org: Self-employed
+    role: Personal Mathematics Tutor
+    dates: Mar 2026 – Present
+    desc: >
+      Provide personalized mathematics tutoring to first-year Bachelor students
+      and high school students. Focus on strengthening foundational
+      understanding, problem-solving skills, and exam preparation.
+  centralesupelec:
+    org: CentraleSupélec
+    role: Independent Software Engineer
+    dates: Sept 2025 – Aug 2026
+    desc: >
+      Leveraging adaptive machine translation to assist collaborative authoring
+      and maintenance of large multilingual computational scientific narratives
+      (continued to work on the project from LISN). Under contract since Nov 2025.
+  lisn_2025:
+    org: LISN
+    role: Research Intern
+    dates: May 2025 – Jul 2025
+    desc: >
+      Leveraging adaptive machine translation to assist collaborative authoring
+      and maintenance of large multilingual computational scientific narratives.
+  devdjsua:
+    org: DevDJsUa
+    role: Software Engineer
+    dates: Jun 2021 – Dec 2021
+    desc: >
+      Built scalable full-stack applications and interactive tools for clients,
+      specializing in custom solutions including CRM systems and user-facing bots.
+  freelance:
+    org: Freelance
+    role: Software Engineer
+    dates: Jan 2021 – Feb 2022
+    desc: >
+      Developed full-stack web applications using JavaScript, C#, React, and
+      Angular. Designed and implemented multiple Telegram bots for automation
+      and user interaction.
+
+# Keyed by photo file name (assets/photos/<slug>.jpg).
+photos:
+  edu-polytechnique:
+    label: Photo — École Polytechnique
+    alt: Yehor Korotenko at École Polytechnique
+    caption: École Polytechnique · X26
+  edu-saclay:
+    label: Photo — Université Paris-Saclay
+    alt: Yehor Korotenko at Université Paris-Saclay
+    caption: Université Paris-Saclay
+  exp-sdis-firefighter:
+    label: Photo — SDIS 77, Volunteer Firefighter
+    alt: Yehor Korotenko as a volunteer firefighter at SDIS 77
+    caption: SDIS 77 · Firefighter
+  exp-sdis-rd:
+    label: Photo — SDIS 77, R&amp;D Engineer
+    alt: Yehor Korotenko working as an R&amp;D engineer at SDIS 77
+    caption: SDIS 77 · R&amp;D Engineer
+  exp-lisn-2026:
+    label: Photo — LISN, Research Engineer Intern
+    alt: Yehor Korotenko as a research engineer intern at LISN
+    caption: LISN · 2026
+  exp-tutoring:
+    label: Photo — Personal Mathematics Tutor
+    alt: Yehor Korotenko tutoring mathematics
+    caption: Mathematics Tutoring
+  exp-centralesupelec:
+    label: Photo — CentraleSupélec, Independent Software Engineer
+    alt: Yehor Korotenko working with CentraleSupélec
+    caption: CentraleSupélec
+  exp-lisn-2025:
+    label: Photo — LISN, Research Intern
+    alt: Yehor Korotenko as a research intern at LISN
+    caption: LISN · 2025
+  exp-devdjsua:
+    label: Photo — DevDJsUa, Software Engineer
+    alt: Yehor Korotenko at DevDJsUa
+    caption: DevDJsUa · 2021
+
+projects:
+  title: Projects
+  on_github: on GitHub
+  view_on_github: View on GitHub
+  lesia: >
+    <strong>lesia</strong> - a research based toolchain to maintain
+    multilingual documents with style and syntax preservance.
+  loggit: >
+    <strong>LogGit</strong> - a lightweight, easy-to-use logging library for Rust.
+  open_digraph: >
+    <strong>Open DiGraph Lib</strong> - a library for managing graphs and
+    boolean circuits.
+  music_sorting: >
+    <strong>Music Sorting Algorithm</strong> - designed an algorithm on Rust
+    programming language to analyze tracks' tonalities and sort tracks melodically.
+  gta: >
+    <strong>GTA Online GameMode:</strong> Developed a 30,000+ line game mode in
+    Pawn, incorporating CRM functionalities, SQL, and algorithms.
+
+conferences:
+  title: Conference Contributions
+  jdse: >
+    Korotenko, Y. (2025). Leveraging Large Language Models for Maintaining
+    Scientific Multilingual Documents.
+    <a href="https://dobbikov.github.io/sci-trans-git/jdse-poster-yehor-korotenko.pdf">Poster</a>
+    presentation
+    (<a href="https://dobbikov.github.io/sci-trans-git/jdse-paper.pdf">extended abstract</a>).
+    Junior Conference on Data Science and Engineering (JDSE) - Gif-sur-Yvette, France.
+
+languages:
+  title: Languages
+  fluent_label: "Fluent:"
+  fluent: English, French
+  native_label: "Native:"
+  native: Ukrainian, Russian
+
+interests:
+  title: Interests &amp; Extracurricular Activities
+  scouting: >
+    <strong>Scouting Leader:</strong> Active scout since age 12, organizing and
+    participating in international events.
+  dj: >
+    <strong>DJ:</strong> Performing as a DJ during free time.
+  dj_photo_alt: Yehor Korotenko performing a drum and bass set in Dnipro, Ukraine
+  dj_caption: >
+    Performing
+    <a href="https://soundcloud.com/dobbikov/last-dnipro-dance">my Drum and Bass set</a>
+    in Dnipro, Ukraine (June 2023)
+  dj_sets_title: Recent DJ Sets
+  listen: Listen
+
+contact:
+  title: Contact Me
+  direct_title: Direct Channels
+  description: Feel free to reach out to me through any of the following channels.
+  email: Email
+  university_email: University Email
+  copy: Copy
+  copy_aria: Copy
+  social_title: Social Profiles

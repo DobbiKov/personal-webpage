@@ -1,5 +1,6 @@
 (() => {
   const THEME_KEY = "dobbikov-theme";
+  const LANG_KEY = "dobbikov-lang"; // read by the redirect in templates/index.html
   // Fallbacks only; the browser bar normally takes the page's own --color-bg.
   const LIGHT_THEME_COLOR = "#f3f4f6";
   const DARK_THEME_COLOR = "#10161d";
@@ -7,6 +8,29 @@
   const root = document.documentElement;
   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
   const mobileNavMedia = window.matchMedia(MOBILE_NAV_QUERY);
+
+  // Labels set at runtime, keyed by <html lang>; English is the fallback.
+  const STRINGS = {
+    en: {
+      themeLight: "Switch to light theme",
+      themeDark: "Switch to dark theme",
+      openMenu: "Open navigation menu",
+      closeMenu: "Close navigation menu",
+    },
+    fr: {
+      themeLight: "Passer au thème clair",
+      themeDark: "Passer au thème sombre",
+      openMenu: "Ouvrir le menu de navigation",
+      closeMenu: "Fermer le menu de navigation",
+    },
+    uk: {
+      themeLight: "Увімкнути світлу тему",
+      themeDark: "Увімкнути темну тему",
+      openMenu: "Відкрити меню навігації",
+      closeMenu: "Закрити меню навігації",
+    },
+  };
+  const strings = STRINGS[root.lang] || STRINGS.en;
 
   const getSystemTheme = () =>
     window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -42,7 +66,7 @@
 
   const updateToggleButtons = (theme) => {
     const isDark = theme === "dark";
-    const label = isDark ? "Switch to light theme" : "Switch to dark theme";
+    const label = isDark ? strings.themeLight : strings.themeDark;
 
     document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
       button.setAttribute("aria-label", label);
@@ -130,7 +154,7 @@
 
       nav.setAttribute("data-menu-open", String(isOpen));
       toggle.setAttribute("aria-expanded", String(isOpen));
-      toggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+      toggle.setAttribute("aria-label", isOpen ? strings.closeMenu : strings.openMenu);
 
       const icon = toggle.querySelector("i");
       if (icon) {
@@ -175,6 +199,71 @@
       if (!event.matches) {
         closeAllNavMenus();
       }
+    });
+  };
+
+  // Desktop language picker (globe button). Closes on outside click, Escape,
+  // or when the nav collapses into its phone layout, which has its own row.
+  const initializeLanguageMenu = () => {
+    const menus = Array.from(document.querySelectorAll("[data-lang-menu]"))
+      .map((menu) => ({
+        menu,
+        toggle: menu.querySelector("[data-lang-menu-toggle]"),
+        list: menu.querySelector(".lang-menu-list"),
+      }))
+      .filter(({ toggle, list }) => toggle && list);
+    if (!menus.length) {
+      return;
+    }
+
+    const setOpen = ({ toggle, list }, isOpen) => {
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      list.hidden = !isOpen;
+    };
+    const closeAll = () => menus.forEach((entry) => setOpen(entry, false));
+
+    menus.forEach((entry) => {
+      entry.toggle.addEventListener("click", () => {
+        const isOpen = entry.toggle.getAttribute("aria-expanded") === "true";
+        closeAll();
+        setOpen(entry, !isOpen);
+        if (!isOpen) {
+          entry.list.querySelector("a:not([aria-current])")?.focus({ preventScroll: true });
+        }
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!menus.some(({ menu }) => menu.contains(event.target))) {
+        closeAll();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") {
+        return;
+      }
+      const open = menus.find(({ toggle }) => toggle.getAttribute("aria-expanded") === "true");
+      if (open) {
+        setOpen(open, false);
+        open.toggle.focus();
+      }
+    });
+
+    mobileNavMedia.addEventListener("change", closeAll);
+  };
+
+  // Remember an explicit language choice so the root page stops redirecting
+  // to the browser's language.
+  const initializeLanguageChoice = () => {
+    document.querySelectorAll("[data-lang-choice]").forEach((link) => {
+      link.addEventListener("click", () => {
+        try {
+          localStorage.setItem(LANG_KEY, link.dataset.langChoice);
+        } catch (error) {
+          // Ignore storage errors.
+        }
+      });
     });
   };
 
@@ -316,6 +405,8 @@
 
   initializeThemeToggle();
   initializeNavigationToggle();
+  initializeLanguageMenu();
+  initializeLanguageChoice();
   initializeStickyHeader();
   initializeIndexSectionTracking();
 })();

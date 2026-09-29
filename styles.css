@@ -506,6 +506,140 @@ code {
     }
 }
 
+/* Language switcher (built by build.py). Desktop: a globe button beside the
+   theme toggle opening a small list (.lang-menu, theme.js). Phones: an
+   inline EN/FR/UA row at the bottom of the nav dropdown (.lang-switch). */
+.lang-menu {
+    order: 3;
+    position: relative;
+    margin-left: 0.35rem;
+}
+
+.lang-menu-toggle {
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border-radius: 9px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.lang-menu-toggle:hover,
+.lang-menu-toggle:focus-visible,
+.lang-menu-toggle[aria-expanded="true"] {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-accent-contrast);
+}
+
+.lang-menu-toggle i {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.lang-menu-list {
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    right: 0;
+    z-index: 10;
+    min-width: 11rem;
+    padding: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    box-shadow: var(--shadow-md);
+}
+
+.lang-menu-list[hidden] {
+    display: none;
+}
+
+.lang-menu-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 40px;
+    padding: 0 0.6rem;
+    border-radius: 7px;
+    text-decoration: none;
+    color: var(--color-text);
+    font-family: "Roboto", sans-serif;
+    font-size: 0.9rem;
+}
+
+.lang-menu-link:hover,
+.lang-menu-link:focus-visible {
+    background-color: var(--color-surface-muted);
+    color: var(--color-accent);
+}
+
+.lang-menu-link[aria-current="true"] {
+    font-weight: 700;
+    pointer-events: none;
+}
+
+.lang-menu-code {
+    width: 1.6rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-text-subtle);
+}
+
+.lang-switch {
+    display: none;
+}
+
+@media (max-width: 650px) {
+    .lang-menu {
+        display: none;
+    }
+}
+
+.lang-switch {
+    align-items: center;
+    gap: 0.05rem;
+}
+
+.lang-switch-link {
+    min-width: 34px;
+    min-height: 44px;
+    padding: 0 0.35rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--color-text);
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    transition: color 0.2s ease;
+}
+
+.lang-switch-link:hover,
+.lang-switch-link:focus-visible {
+    color: var(--color-accent);
+}
+
+.lang-switch-link[aria-current="true"] {
+    color: var(--color-text-subtle);
+    font-weight: 700;
+    pointer-events: none;
+}
+
 .theme-toggle {
     order: 3;
     border: 1px solid var(--color-border);
@@ -680,6 +814,14 @@ code {
         justify-content: center;
         padding: 0.45rem 0.35rem;
         font-size: 0.84rem;
+    }
+
+    .lang-switch {
+        display: flex;
+        justify-content: center;
+        margin: 0.15rem 0 0;
+        padding: 0.15rem 0 0;
+        border-top: 1px solid var(--color-border);
     }
 }
 

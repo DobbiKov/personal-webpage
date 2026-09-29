@@ -1,0 +1,258 @@
+# Українські рядки для templates/index.html. Значення — фрагменти HTML:
+# вбудовані теги дозволені, «&» пишеться як «&amp;».
+# Після змін запустіть: python3 build.py
+
+meta:
+  title: Єгор Коротенко — розробник і студент математики та інформатики
+  description: >-
+    Єгор Коротенко — інженер-програміст, учасник open-source проєктів, студент
+    математики та інформатики в Université Paris-Saclay і студент-інженер
+    École Polytechnique de Paris. Спеціалізується на машинному перекладі,
+    full-stack розробці та наукових інструментах.
+  og_description: >-
+    Інженер-програміст і студент математики та інформатики в Université
+    Paris-Saclay. Машинний переклад, full-stack застосунки та open-source проєкти.
+  og_image_alt: Єгор Коротенко — інженер-програміст, студент Політехніки
+
+nav:
+  primary: Основна навігація
+  open_menu: Відкрити меню навігації
+  theme_dark: Увімкнути темну тему
+  about: ПРО МЕНЕ
+  lecture_notes: КОНСПЕКТИ
+  contact: КОНТАКТИ
+  language: Мова
+
+social:
+  github: Профіль на GitHub
+  linkedin: Профіль у LinkedIn
+  email: Надіслати листа
+
+hero:
+  portrait_alt: Портрет Єгора Коротенка
+  name: Єгор Коротенко
+  tagline_1: Інженер-програміст
+  tagline_2: Студент Політехніки
+  cv: CV
+  scroll_cue: Перейти до розділу «Про мене»
+
+about:
+  title: Про мене
+
+summary:
+  title: Коротко
+  paragraphs:
+    - >
+      Я допитливий молодий чоловік із понад шестирічним досвідом у
+      дослідженнях, фрилансі та індустрії. Зараз навчаюся в
+      <strong>École Polytechnique de Paris</strong> (X26) за інженерною
+      програмою рівня магістра (ingénieur polytechnicien).
+    - >
+      Нині працюю у французькій <strong>Департаментській службі пожежної
+      охорони та порятунку (SDIS 77)</strong>, де створюю й навчаю моделі
+      <em>машинного навчання</em> та розробляю цифрові сервіси. Маю досвід
+      full-stack розробки, участі в open-source проєктах, машинного навчання
+      та математичних досліджень; нещодавно представляв роботи на JDSE 2025 та
+      Ukrainian Mathematics Day.
+
+education:
+  title: Освіта
+  polytechnique:
+    school: École Polytechnique de Paris
+    degree: Магістр інженерії — ingénieur polytechnicien
+    dates: серп. 2026 – серп. 2030
+  saclay:
+    school: Université Paris-Saclay
+    degree: Бакалавр — подвійний диплом з математики та інформатики
+    dates: вер. 2023 – трав. 2026
+    details:
+      - >
+        <strong>Середній бал:</strong> 18,04 / 20
+        &mdash; 3-й із 57 студентів &mdash;
+        стипендія FMJH
+      - >
+        <strong>Профільні курси:</strong>
+        диференціальне та інтегральне числення, математичний аналіз, лінійна
+        алгебра, абстрактна алгебра й теорія груп, теорія ймовірностей і
+        статистика, алгоритми та структури даних, функціональне програмування,
+        топологія, графічне програмування
+
+skills:
+  title: Технічні навички
+  items:
+    - label: "Мови програмування:"
+      value: Python, Rust, OCaml, C++, C#, JavaScript
+    - label: "Веброзробка:"
+      value: ASP.NET Core, Angular, React, MySQL
+    - label: "Аналіз даних:"
+      value: Pandas, Matplotlib, NumPy, scikit-learn
+    - label: "Інші інструменти:"
+      value: Requests, Selenium, SQL
+    - label: "Контроль версій:"
+      value: Git, GitHub, GitLab
+
+experience:
+  title: Досвід
+  sdis:
+    org: Департаментська служба пожежної охорони та порятунку (SDIS 77)
+    firefighter:
+      role: Пожежник-доброволець
+      dates: вер. 2026 – дотепер
+      desc: >
+        Близько половини свого часу присвячую службі пожежником-добровольцем:
+        виїжджаю на екстрені виклики та допомагаю в рятувальних і аварійних
+        операціях.
+    rd:
+      role: Інженер з досліджень і розробок
+      dates: вер. 2026 – дотепер
+      desc: >
+        Проєктую та розробляю моделі машинного навчання й цифрові інструменти,
+        що відповідають потребам адміністрації служби та оптимізують її робочі
+        процеси.
+  lisn_2026:
+    org: LISN
+    role: Стажер — інженер-дослідник
+    dates: черв. 2026 – лип. 2026
+    desc: >
+      Використання адаптивного машинного перекладу для підтримки спільного
+      написання та супроводу великих багатомовних наукових документів.
+  tutor:
+    org: Самозайнятий
+    role: Репетитор з математики
+    dates: бер. 2026 – дотепер
+    desc: >
+      Індивідуальні заняття з математики для студентів першого курсу
+      бакалаврату та школярів. Зосереджуюся на зміцненні базового розуміння,
+      навичках розв’язування задач і підготовці до іспитів.
+  centralesupelec:
+    org: CentraleSupélec
+    role: Незалежний інженер-програміст
+    dates: вер. 2025 – серп. 2026
+    desc: >
+      Використання адаптивного машинного перекладу для підтримки спільного
+      написання та супроводу великих багатомовних обчислювальних наукових
+      наративів (продовження проєкту, розпочатого в LISN). За контрактом з
+      листопада 2025.
+  lisn_2025:
+    org: LISN
+    role: Стажер-дослідник
+    dates: трав. 2025 – лип. 2025
+    desc: >
+      Використання адаптивного машинного перекладу для підтримки спільного
+      написання та супроводу великих багатомовних обчислювальних наукових
+      наративів.
+  devdjsua:
+    org: DevDJsUa
+    role: Інженер-програміст
+    dates: черв. 2021 – груд. 2021
+    desc: >
+      Створював масштабовані full-stack застосунки та інтерактивні інструменти
+      для клієнтів, спеціалізуючись на індивідуальних рішеннях, зокрема
+      CRM-системах і ботах для користувачів.
+  freelance:
+    org: Фриланс
+    role: Інженер-програміст
+    dates: січ. 2021 – лют. 2022
+    desc: >
+      Розробляв full-stack вебзастосунки на JavaScript, C#, React та Angular.
+      Спроєктував і реалізував кілька Telegram-ботів для автоматизації та
+      взаємодії з користувачами.
+
+photos:
+  edu-polytechnique:
+    label: Фото — École Polytechnique
+    alt: Єгор Коротенко в École Polytechnique
+    caption: École Polytechnique · X26
+  edu-saclay:
+    label: Фото — Université Paris-Saclay
+    alt: Єгор Коротенко в Université Paris-Saclay
+    caption: Université Paris-Saclay
+  exp-sdis-firefighter:
+    label: Фото — SDIS 77, пожежник-доброволець
+    alt: Єгор Коротенко — пожежник-доброволець у SDIS 77
+    caption: SDIS 77 · Пожежник
+  exp-sdis-rd:
+    label: Фото — SDIS 77, інженер R&amp;D
+    alt: Єгор Коротенко — інженер R&amp;D у SDIS 77
+    caption: SDIS 77 · Інженер R&amp;D
+  exp-lisn-2026:
+    label: Фото — LISN, стажер — інженер-дослідник
+    alt: Єгор Коротенко — стажер-дослідник у LISN
+    caption: LISN · 2026
+  exp-tutoring:
+    label: Фото — репетитор з математики
+    alt: Єгор Коротенко проводить заняття з математики
+    caption: Репетиторство з математики
+  exp-centralesupelec:
+    label: Фото — CentraleSupélec, незалежний інженер-програміст
+    alt: Єгор Коротенко працює з CentraleSupélec
+    caption: CentraleSupélec
+  exp-lisn-2025:
+    label: Фото — LISN, стажер-дослідник
+    alt: Єгор Коротенко — стажер-дослідник у LISN
+    caption: LISN · 2025
+  exp-devdjsua:
+    label: Фото — DevDJsUa, інженер-програміст
+    alt: Єгор Коротенко в DevDJsUa
+    caption: DevDJsUa · 2021
+
+projects:
+  title: Проєкти
+  on_github: на GitHub
+  view_on_github: Переглянути на GitHub
+  lesia: >
+    <strong>lesia</strong> - дослідницький інструментарій для супроводу
+    багатомовних документів зі збереженням стилю та синтаксису.
+  loggit: >
+    <strong>LogGit</strong> - легка й проста у використанні бібліотека
+    логування для Rust.
+  open_digraph: >
+    <strong>Open DiGraph Lib</strong> - бібліотека для роботи з графами та
+    булевими схемами.
+  music_sorting: >
+    <strong>Алгоритм сортування музики</strong> - алгоритм на Rust, що
+    аналізує тональності треків і впорядковує їх мелодійно.
+  gta: >
+    <strong>Ігровий режим GTA Online:</strong> розробив ігровий режим на Pawn
+    обсягом понад 30&nbsp;000 рядків із CRM-функціями, SQL та алгоритмами.
+
+conferences:
+  title: Виступи на конференціях
+  jdse: >
+    Korotenko, Y. (2025). Leveraging Large Language Models for Maintaining
+    Scientific Multilingual Documents. Постерна доповідь
+    (<a href="https://dobbikov.github.io/sci-trans-git/jdse-poster-yehor-korotenko.pdf">постер</a>,
+    <a href="https://dobbikov.github.io/sci-trans-git/jdse-paper.pdf">розширена анотація</a>).
+    Junior Conference on Data Science and Engineering (JDSE) - Gif-sur-Yvette, Франція.
+
+languages:
+  title: Мови
+  fluent_label: "Вільно:"
+  fluent: англійська, французька
+  native_label: "Рідні:"
+  native: українська, російська
+
+interests:
+  title: Інтереси та позанавчальна діяльність
+  scouting: >
+    <strong>Скаутський лідер:</strong> скаут з 12 років, організовую
+    міжнародні заходи та беру в них участь.
+  dj: >
+    <strong>DJ:</strong> у вільний час граю як діджей.
+  dj_photo_alt: Єгор Коротенко грає драм-н-бейс сет у Дніпрі, Україна
+  dj_caption: >
+    Граю
+    <a href="https://soundcloud.com/dobbikov/last-dnipro-dance">свій драм-н-бейс сет</a>
+    у Дніпрі, Україна (червень 2023)
+  dj_sets_title: Останні DJ-сети
+  listen: Слухати
+
+contact:
+  title: Контакти
+  direct_title: Прямі канали
+  description: Звертайтеся до мене будь-яким із цих каналів.
+  email: Ел. пошта
+  university_email: Університетська пошта
+  copy: Копіювати
+  copy_aria: Копіювати
+  social_title: Соцмережі

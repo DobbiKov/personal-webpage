@@ -1,0 +1,259 @@
+# Chaînes françaises pour templates/index.html. Les valeurs sont du HTML :
+# balises inline autorisées, « & » s'écrit « &amp; », espace fine avant « : »
+# via &nbsp;. Après modification : python3 build.py
+
+meta:
+  title: Yehor Korotenko — Développeur et étudiant en maths-info
+  description: >-
+    Yehor Korotenko — ingénieur logiciel, contributeur open source, étudiant en
+    mathématiques et informatique à l'Université Paris-Saclay et élève ingénieur
+    à l'École Polytechnique de Paris. Spécialisé en traduction automatique,
+    développement full-stack et outils scientifiques.
+  og_description: >-
+    Ingénieur logiciel et étudiant en maths-info à l'Université Paris-Saclay.
+    Traduction automatique, applications full-stack et projets open source.
+  og_image_alt: Yehor Korotenko — ingénieur logiciel, étudiant à Polytechnique
+
+nav:
+  primary: Navigation principale
+  open_menu: Ouvrir le menu de navigation
+  theme_dark: Passer au thème sombre
+  about: À PROPOS
+  lecture_notes: NOTES DE COURS
+  contact: CONTACT
+  language: Langue
+
+social:
+  github: Profil GitHub
+  linkedin: Profil LinkedIn
+  email: Envoyer un e-mail
+
+hero:
+  portrait_alt: Portrait de Yehor Korotenko
+  name: Yehor Korotenko
+  tagline_1: Ingénieur logiciel
+  tagline_2: Étudiant à Polytechnique
+  cv: CV
+  scroll_cue: Aller à la section À propos
+
+about:
+  title: À propos
+
+summary:
+  title: En bref
+  paragraphs:
+    - >
+      Jeune homme curieux, j'ai plus de six ans d'expérience entre recherche,
+      freelance et industrie. J'étudie actuellement à
+      l'<strong>École Polytechnique de Paris</strong> (X26), dans le cycle
+      ingénieur polytechnicien.
+    - >
+      Je travaille actuellement au <strong>Service départemental d'incendie et
+      de secours de Seine-et-Marne (SDIS 77)</strong>, où je conçois et entraîne
+      des modèles d'<em>apprentissage automatique</em> et développe des services
+      numériques. J'ai de l'expérience en développement full-stack, en
+      contribution open source, en apprentissage automatique et en recherche
+      mathématique, avec des travaux récemment présentés aux JDSE 2025 et au
+      Ukrainian Mathematics Day.
+
+education:
+  title: Formation
+  polytechnique:
+    school: École Polytechnique de Paris
+    degree: Cycle ingénieur polytechnicien
+    dates: août 2026 – août 2030
+  saclay:
+    school: Université Paris-Saclay
+    degree: Licence — double diplôme Mathématiques et Informatique
+    dates: sept. 2023 – mai 2026
+    details:
+      - >
+        <strong>Moyenne&nbsp;:</strong> 18,04 / 20
+        &mdash; 3<sup>e</sup> sur 57 étudiants &mdash;
+        bourse FMJH
+      - >
+        <strong>Cours suivis&nbsp;:</strong>
+        calcul, analyse, algèbre linéaire, algèbre générale et théorie des
+        groupes, probabilités et statistiques, algorithmique et structures de
+        données, programmation fonctionnelle, topologie, programmation graphique
+
+skills:
+  title: Compétences techniques
+  items:
+    - label: "Langages de programmation&nbsp;:"
+      value: Python, Rust, OCaml, C++, C#, JavaScript
+    - label: "Développement web&nbsp;:"
+      value: ASP.NET Core, Angular, React, MySQL
+    - label: "Science des données&nbsp;:"
+      value: Pandas, Matplotlib, NumPy, scikit-learn
+    - label: "Autres outils&nbsp;:"
+      value: Requests, Selenium, SQL
+    - label: "Gestion de versions&nbsp;:"
+      value: Git, GitHub, GitLab
+
+experience:
+  title: Expérience
+  sdis:
+    org: Service départemental d'incendie et de secours (SDIS 77)
+    firefighter:
+      role: Sapeur-pompier volontaire
+      dates: sept. 2026 – aujourd'hui
+      desc: >
+        Je consacre environ la moitié de mon temps à mon engagement de
+        sapeur-pompier volontaire&nbsp;: réponse aux appels d'urgence et
+        participation aux opérations de secours.
+    rd:
+      role: Ingénieur R&amp;D
+      dates: sept. 2026 – aujourd'hui
+      desc: >
+        Conception et développement de modèles d'apprentissage automatique et
+        d'outils numériques qui répondent aux besoins de l'administration du
+        service et optimisent ses processus.
+  lisn_2026:
+    org: LISN
+    role: Stagiaire ingénieur de recherche
+    dates: juin 2026 – juil. 2026
+    desc: >
+      Traduction automatique adaptative au service de la rédaction collaborative
+      et de la maintenance de grands documents scientifiques multilingues.
+  tutor:
+    org: Indépendant
+    role: Professeur particulier de mathématiques
+    dates: mars 2026 – aujourd'hui
+    desc: >
+      Cours particuliers de mathématiques pour des étudiants de première année
+      de licence et des lycéens, centrés sur la consolidation des bases, la
+      résolution de problèmes et la préparation aux examens.
+  centralesupelec:
+    org: CentraleSupélec
+    role: Ingénieur logiciel indépendant
+    dates: sept. 2025 – août 2026
+    desc: >
+      Traduction automatique adaptative au service de la rédaction collaborative
+      et de la maintenance de grands récits scientifiques computationnels
+      multilingues (suite du projet commencé au LISN). Sous contrat depuis
+      nov. 2025.
+  lisn_2025:
+    org: LISN
+    role: Stagiaire de recherche
+    dates: mai 2025 – juil. 2025
+    desc: >
+      Traduction automatique adaptative au service de la rédaction collaborative
+      et de la maintenance de grands récits scientifiques computationnels
+      multilingues.
+  devdjsua:
+    org: DevDJsUa
+    role: Ingénieur logiciel
+    dates: juin 2021 – déc. 2021
+    desc: >
+      Développement d'applications full-stack évolutives et d'outils interactifs
+      pour des clients, avec une spécialisation dans les solutions sur mesure,
+      notamment des CRM et des bots.
+  freelance:
+    org: Freelance
+    role: Ingénieur logiciel
+    dates: janv. 2021 – févr. 2022
+    desc: >
+      Développement d'applications web full-stack en JavaScript, C#, React et
+      Angular. Conception et réalisation de plusieurs bots Telegram pour
+      l'automatisation et l'interaction avec les utilisateurs.
+
+photos:
+  edu-polytechnique:
+    label: Photo — École Polytechnique
+    alt: Yehor Korotenko à l'École Polytechnique
+    caption: École Polytechnique · X26
+  edu-saclay:
+    label: Photo — Université Paris-Saclay
+    alt: Yehor Korotenko à l'Université Paris-Saclay
+    caption: Université Paris-Saclay
+  exp-sdis-firefighter:
+    label: Photo — SDIS 77, sapeur-pompier volontaire
+    alt: Yehor Korotenko en tant que sapeur-pompier volontaire au SDIS 77
+    caption: SDIS 77 · Sapeur-pompier
+  exp-sdis-rd:
+    label: Photo — SDIS 77, ingénieur R&amp;D
+    alt: Yehor Korotenko ingénieur R&amp;D au SDIS 77
+    caption: SDIS 77 · Ingénieur R&amp;D
+  exp-lisn-2026:
+    label: Photo — LISN, stagiaire ingénieur de recherche
+    alt: Yehor Korotenko stagiaire ingénieur de recherche au LISN
+    caption: LISN · 2026
+  exp-tutoring:
+    label: Photo — professeur particulier de mathématiques
+    alt: Yehor Korotenko donnant un cours de mathématiques
+    caption: Cours de mathématiques
+  exp-centralesupelec:
+    label: Photo — CentraleSupélec, ingénieur logiciel indépendant
+    alt: Yehor Korotenko travaillant avec CentraleSupélec
+    caption: CentraleSupélec
+  exp-lisn-2025:
+    label: Photo — LISN, stagiaire de recherche
+    alt: Yehor Korotenko stagiaire de recherche au LISN
+    caption: LISN · 2025
+  exp-devdjsua:
+    label: Photo — DevDJsUa, ingénieur logiciel
+    alt: Yehor Korotenko chez DevDJsUa
+    caption: DevDJsUa · 2021
+
+projects:
+  title: Projets
+  on_github: sur GitHub
+  view_on_github: Voir sur GitHub
+  lesia: >
+    <strong>lesia</strong> - une chaîne d'outils issue de la recherche pour
+    maintenir des documents multilingues en préservant le style et la syntaxe.
+  loggit: >
+    <strong>LogGit</strong> - une bibliothèque de journalisation pour Rust,
+    légère et simple d'utilisation.
+  open_digraph: >
+    <strong>Open DiGraph Lib</strong> - une bibliothèque de manipulation de
+    graphes et de circuits booléens.
+  music_sorting: >
+    <strong>Algorithme de tri musical</strong> - un algorithme en Rust qui
+    analyse la tonalité des morceaux et les ordonne de façon mélodique.
+  gta: >
+    <strong>Mode de jeu GTA Online&nbsp;:</strong> développement d'un mode de
+    jeu de plus de 30&nbsp;000 lignes en Pawn, intégrant des fonctionnalités de
+    CRM, du SQL et des algorithmes.
+
+conferences:
+  title: Communications
+  jdse: >
+    Korotenko, Y. (2025). Leveraging Large Language Models for Maintaining
+    Scientific Multilingual Documents. Présentation d'un
+    <a href="https://dobbikov.github.io/sci-trans-git/jdse-poster-yehor-korotenko.pdf">poster</a>
+    (<a href="https://dobbikov.github.io/sci-trans-git/jdse-paper.pdf">résumé étendu</a>).
+    Junior Conference on Data Science and Engineering (JDSE) - Gif-sur-Yvette, France.
+
+languages:
+  title: Langues
+  fluent_label: "Courant&nbsp;:"
+  fluent: anglais, français
+  native_label: "Langues maternelles&nbsp;:"
+  native: ukrainien, russe
+
+interests:
+  title: Centres d'intérêt et activités extrascolaires
+  scouting: >
+    <strong>Chef scout&nbsp;:</strong> scout depuis l'âge de 12 ans, j'organise
+    des événements internationaux et j'y participe.
+  dj: >
+    <strong>DJ&nbsp;:</strong> je mixe pendant mon temps libre.
+  dj_photo_alt: Yehor Korotenko jouant un set drum and bass à Dnipro, en Ukraine
+  dj_caption: >
+    En train de jouer
+    <a href="https://soundcloud.com/dobbikov/last-dnipro-dance">mon set drum and bass</a>
+    à Dnipro, en Ukraine (juin 2023)
+  dj_sets_title: Sets récents
+  listen: Écouter
+
+contact:
+  title: Me contacter
+  direct_title: Contact direct
+  description: N'hésitez pas à me contacter par l'un des canaux suivants.
+  email: E-mail
+  university_email: E-mail universitaire
+  copy: Copier
+  copy_aria: Copier
+  social_title: Réseaux sociaux
