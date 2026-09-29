@@ -3,15 +3,14 @@
 # After editing, run: python3 build.py
 
 meta:
-  title: Yehor Korotenko — Developer &amp; Math/CS Student
+  title: Yehor Korotenko — École Polytechnique Student, Math &amp; CS
   description: >-
-    Yehor Korotenko — Software Engineer, open-source contributor, and Math &amp;
-    Computer Science student at Université Paris-Saclay, engineering student at
-    École Polytechnique de Paris. Specialising in machine translation, full-stack
-    development, and scientific tooling.
+    Yehor Korotenko — student at École Polytechnique de Paris (Institut
+    Polytechnique de Paris), specialising in mathematics and computer science.
+    Research in machine translation, software engineering and open source.
   og_description: >-
-    Software Engineer and Math &amp; CS student at Université Paris-Saclay.
-    Working on machine translation, full-stack apps, and open-source projects.
+    Student at École Polytechnique de Paris (Institut Polytechnique de Paris),
+    specialising in mathematics and computer science.
   og_image_alt: Yehor Korotenko — SWE, Polytechnique Student
 
 nav:

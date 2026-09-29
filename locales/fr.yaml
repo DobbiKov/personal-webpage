@@ -3,15 +3,14 @@
 # via &nbsp;. Après modification : python3 build.py
 
 meta:
-  title: Yehor Korotenko — Développeur et étudiant en maths-info
+  title: Yehor Korotenko — Élève polytechnicien, mathématiques et informatique
   description: >-
-    Yehor Korotenko — ingénieur logiciel, contributeur open source, étudiant en
-    mathématiques et informatique à l'Université Paris-Saclay et élève ingénieur
-    à l'École Polytechnique de Paris. Spécialisé en traduction automatique,
-    développement full-stack et outils scientifiques.
+    Yehor Korotenko — élève à l'École Polytechnique de Paris (Institut
+    Polytechnique de Paris), spécialisé en mathématiques et informatique.
+    Recherche en traduction automatique, génie logiciel et open source.
   og_description: >-
-    Ingénieur logiciel et étudiant en maths-info à l'Université Paris-Saclay.
-    Traduction automatique, applications full-stack et projets open source.
+    Élève à l'École Polytechnique de Paris (Institut Polytechnique de Paris),
+    spécialisé en mathématiques et informatique.
   og_image_alt: Yehor Korotenko — ingénieur logiciel, étudiant à Polytechnique
 
 nav:
@@ -32,7 +31,7 @@ hero:
   portrait_alt: Portrait de Yehor Korotenko
   name: Yehor Korotenko
   tagline_1: Ingénieur logiciel
-  tagline_2: Étudiant à Polytechnique
+  tagline_2: Élève Polytechnicien
   cv: CV
   scroll_cue: Aller à la section À propos
 
